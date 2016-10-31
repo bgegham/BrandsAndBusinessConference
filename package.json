@@ -1,0 +1,43 @@
+{
+  "name": "maeutica-brands-and-business-conference",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "MD5": "~1.3.0",
+    "async": "^1.5.2",
+    "body-parser": "~1.13.2",
+    "cookie-parser": "~1.3.5",
+    "cookies": ">= 0.2.2",
+    "cors": "~2.7.1",
+    "crypto": "~0.0.3",
+    "debug": "~2.2.0",
+    "email-templates": "~2.0.1",
+    "express": "~4.13.1",
+    "express-session": "^1.13.0",
+    "express-validator": "^2.20.2",
+    "gridfs-stream": "~1.1.1",
+    "intel": "^1.1.0",
+    "jade": "~1.11.0",
+    "json5": "^0.2.0",
+    "jsonwebtoken": "~5.4.1",
+    "make-plural": "^3.0.3",
+    "math-interval-parser": "^1.1.0",
+    "messageformat": "^0.3.1",
+    "method-override": "~2.3.5",
+    "moment": "^2.11.2",
+    "mongo-xlsx": "^1.0.12",
+    "mongoose": "~4.3.1",
+    "mongoose-unique-validator": "~0.6.2",
+    "morgan": "~1.6.1",
+    "multer": "~1.1.0",
+    "mustache": "*",
+    "password-generator": "^2.0.2",
+    "sendgrid": "^4.0.1",
+    "serve-favicon": "~2.3.0",
+    "sprintf-js": ">=1.0.3",
+    "underscore": "~1.8.3"
+  }
+}
