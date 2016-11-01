@@ -1,0 +1,67 @@
+header.cd-main-header.animate-search
+    .cd-logo
+        a(href='#0')
+            img(src='img/maeutica_logo.png', alt='Logo')
+    nav.cd-main-nav-wrapper
+        a.cd-search-trigger.cd-text-replace(href='#search') Search
+        ul.cd-main-nav.cl-effect-4
+            li.selected-nav.home
+                a(href='#home') Home
+            li
+                a(href='#about') About
+            li
+                a(href='#0') Agenda
+            li
+                a(href='#0') Speakers
+            li
+                a(href='#0') Partners
+            li
+                a(href='#0') Conference 2011
+            li
+                a(href='#0') Contacts
+        // .cd-main-nav
+    // .cd-main-nav-wrapper
+    a.cd-nav-trigger.cd-text-replace(href='#0')
+        | Menu
+        span
+
+
+#search.cd-main-search
+    form
+        input(type='search', placeholder='Search...')
+        .cd-select
+            span in
+            | &nbsp;
+            select(name='select-category')
+                option(value='all-categories') all Categories
+                option(value='category1') Category 1
+                option(value='category2') Category 2
+            span.selected-value all Categories
+    .cd-search-suggestions
+        .news
+            h3 News
+            ul
+                li
+                    a.image-wrapper(href='#0')
+                        img(src='img/placeholder.png', alt='News image')
+                    h4
+                        a.cd-nowrap(href='#0') Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    time(datetime='2016-01-12') Feb 03, 2016
+        // .news
+        .quick-links
+            h3 Quick Links
+            ul
+                li
+                    a(href='#0') Find a store
+                li
+                    a(href='#0') Accessories
+                li
+                    a(href='#0') Warranty info
+                li
+                    a(href='#0') Support
+                li
+                    a(href='#0') Contact us
+        // .quick-links
+    // .cd-search-suggestions
+    a.close.cd-text-replace(href='#0') Close Form
+.cd-cover-layer

@@ -1,0 +1,32 @@
+doctype html
+html
+    head
+        // meta
+        meta(charset="utf-8")
+        <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><![endif]-->
+        meta(content="width=device-width, initial-scale=1.0, maximum-scale=1", name="viewport")
+
+        // title
+        title= title
+
+        // stylesheets
+        link(rel='shortcut icon', href='/images/favicon.ico', type='image/x-icon')
+        link(rel='stylesheet', href='/libs/bootstrap/dist/css/bootstrap.min.css')
+        link(rel='stylesheet', href='/libs/font-awesome/css/font-awesome.min.css')
+
+        // custom css
+        link(rel='stylesheet', href='/css/login.css')
+        link(rel='stylesheet', href='/css/main.css')
+        link(rel='stylesheet', href='/css/response.css')
+
+        // javascript
+        script(type="text/javascript", src='/libs/jquery/dist/jquery.min.js')
+
+        // custom js
+        script(type="text/javascript", src='/js/main.js')
+
+    body
+
+        block content
+
+        block specific_scripts

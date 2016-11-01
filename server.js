@@ -72,10 +72,14 @@ if (APP_ENV === 'development') {
 //start migrate
 require('./app/migrations/appFirstStart');
 
-require('./app/routes/adminPanel/adminRoutes')(app, multer({ dest: 'tmp/adminRoutes/' }));
+// routes for site pages
+require('./app/routes/pages/pagesRoutes')(app, multer({ dest: 'tmp/site/' }));
+
+// routes for admin
+require('./app/routes/adminPanel/adminRoutes')(app, multer({ dest: 'tmp/admin/' }));
 
 // api routes for mobile
-require('./app/routes/api/api')(app, multer({ dest: 'tmp/api/' }));
+require('./app/routes/api/apiRoutes')(app, multer({ dest: 'tmp/api/' }));
 
 
 // route to handle all angular requests
@@ -104,17 +108,14 @@ app.use(function(error, req, res, next) {
 });
 
 // startup our app
-var _SERVER_        = app.listen(config.http_port, config.http_host);
-global.io           = require('socket.io').listen(_SERVER_);
-// socket controller
-require('./app/controllers/sockets/socketsController')(app, global.io );
+app.listen(config.http_port, config.http_host);
 
 // shout out to the user
-console.log(' ________________________________________________');
-console.log('|                                                |');
-console.log('|     << RICHSTONE >> started on port ' + config.http_port + '       |');
-console.log('|                                                |');
-console.log(' ------------------------------------------------');
+console.log(' __________________________________________________________');
+console.log('|                                                          |');
+console.log('| << BrandsAndBusinessConference >> started on port ' + config.http_port + '   |');
+console.log('|                                                          |');
+console.log(' ----------------------------------------------------------');
 
 
 // expose app

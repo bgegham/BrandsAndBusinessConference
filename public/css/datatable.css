@@ -1,0 +1,87 @@
+table.table-control {
+    margin-top: 10px !important;
+    margin-bottom: 25px !important;
+}
+.dataTables_scroll{
+    margin-bottom: 8px;
+}
+.table-control thead{
+    background: #828282!important;
+    border: none;
+    color: white;
+}
+.table-control thead th{
+    outline: none!important;
+    border-bottom: none!important;
+}
+table.table-control thead .sorting_desc:after {
+    color: #4b102a;
+    opacity: 1;
+}
+table.table-control thead thead .sorting_asc:after {
+    color: #4b102a;
+    opacity: 1;
+}
+table.table-control thead .sorting_asc:after {
+    color: #4b102a;
+    opacity: 1;
+}
+table.table-control thead .sorting:after {
+    color: #4b102a;
+    opacity: 1;
+}
+table.table-control thead .heading-group th{
+    text-align: center;
+    padding: 14px;
+    background: #eaeaea;
+    color: #4b102a;
+    font-size: 18px;
+    border-right: solid 1px #adadad;
+}
+table.table-control thead tr th i{
+    color: #f5d809;
+}
+
+table.table-control tbody .shadow-right-columns{
+    background: #f1f1f1;
+    padding: 0!important;
+    border: none!important;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=6, Direction=0, Color=#000000)";/*IE 8*/
+    -moz-box-shadow: -10px 0 6px -10px rgba(0,0,0,0.5) inset;/*FF 3.5+*/
+    -webkit-box-shadow: -10px 0 6px -10px rgba(0,0,0,0.5) inset;/*Saf3-4, Chrome, iOS 4.0.2-4.2, Android 2.3+*/
+    box-shadow: -10px 0 6px -10px rgba(0,0,0,0.5) inset;/* FF3.5+, Opera 9+, Saf1+, Chrome, IE10 */
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=6, Direction=135, Color=#000000); /*IE 5.5-7*/
+}
+table.table-control tbody .shadow-right-columns a{
+    color: #4b102a;
+    position: relative;
+    width: 100%;
+    display: none;
+    padding: 3px 0!important;
+}
+table.table-control tbody .shadow-right-columns:hover a{
+    display: block;
+}
+table.table-control tbody .shadow-left-columns{
+    background: #f1f1f1;
+    padding: 0!important;
+    border-top: none!important;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=6, Direction=169, Color=#000000)";/*IE 8*/
+    -moz-box-shadow: 10px 2px 6px -10px rgba(0,0,0,0.5) inset;/*FF 3.5+*/
+    -webkit-box-shadow: 10px 2px 6px -10px rgba(0,0,0,0.5) inset;/*Saf3-4, Chrome, iOS 4.0.2-4.2, Android 2.3+*/
+    box-shadow: 10px 2px 6px -10px rgba(0,0,0,0.5) inset;/* FF3.5+, Opera 9+, Saf1+, Chrome, IE10 */
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=6, Direction=135, Color=#000000); /*IE 5.5-7*/
+}
+table.table-control tbody .shadow-left-columns a{
+    color: #4b102a;
+    display: none;
+    padding: 3px 0!important;
+    position: relative;
+    width: 100%;
+}
+table.table-control tbody .shadow-left-columns:hover a{
+    display: block;
+}
+table.table-control tbody tr.selected{
+    background: #DDDDDD;
+}

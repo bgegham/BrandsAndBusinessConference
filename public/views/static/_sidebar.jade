@@ -1,0 +1,72 @@
+script.
+    $('.toggle-menu-btn').click(function ($event) {
+        $event.stopPropagation();
+        $("#wrapper").toggleClass("toggled");
+    });
+    function initMenu() {
+        $('#myAccordion li a').on( "click", function () {
+            $('.collapse.in').collapse('hide');
+        });
+    }
+    $(document).ready(function () {
+        initMenu();
+    });
+#sidebar-wrapper
+    ul.sidebar-nav#myAccordion
+        li.sidebar-brand
+            a
+                i.fa.fa-user
+                |   #{username}
+        li(class=(active_menu === 'dashboard' ? 'activeMenu' : ''))
+            span.selected
+            a(href="/admin/dashboard")
+                i.fa.fa-dashboard
+                span    Dashboard
+        li(class=(active_menu === 'brilliants' ? 'activeMenu' : ''), data-toggle="collapse",data-target="#_brilliants", data-parent="#myAccordion")
+            span.selected
+            a
+                i.fa.fa-diamond
+                span Brilliants
+                span.pull-right-container
+                    i.fa.fa-angle-left.pull-right
+            ul#_brilliants.sub-menu.collapse
+                li
+                    a(href="/admin/brilliants/view")
+                        i.fa.fa-angle-double-right
+                        |  View
+                li
+                    a(href="/admin/brilliants/add")
+                        i.fa.fa-angle-double-right
+                        |  Add
+        li(class=(active_menu === 'users' ? 'activeMenu' : ''), data-toggle="collapse",data-target="#_usersList", data-parent="#myAccordion")
+            span.selected
+            a
+                i.fa.fa-users
+                span Users
+                span.pull-right-container
+                    i.fa.fa-angle-left.pull-right
+            ul#_usersList.sub-menu.collapse
+                li
+                    a(href="/admin/users/view")
+                        i.fa.fa-angle-double-right
+                        |  View
+                li
+                    a(href="/admin/users/addFake")
+                        i.fa.fa-angle-double-right
+                        |  Add (fake)
+        li(class=(active_menu === 'transactions' ? 'activeMenu' : ''), data-toggle="collapse",data-target="#_transactions", data-parent="#myAccordion")
+            span.selected
+            a
+                i.fa.fa-exchange
+                span Transactions
+                span.pull-right-container
+                    i.fa.fa-angle-left.pull-right
+            ul#_transactions.sub-menu.collapse
+                li
+                    a(href="/admin/transactions/view")
+                        i.fa.fa-angle-double-right
+                        |  View
+                li
+                    a(href="/admin/transactions/addFake")
+                        i.fa.fa-angle-double-right
+                        |  Add (fake)

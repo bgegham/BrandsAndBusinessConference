@@ -1,0 +1,74 @@
+extends ../../layouts/admin_layout
+
+block specific_stylesheets
+    link(rel='stylesheet', href='/css/admin.css')
+
+block content
+    include ../../static/_header
+    #wrapper
+        include ../../static/_sidebar
+        #page-content-wrapper
+            .row
+                .col-lg-3.col-md-6
+                    .panel.panel-red
+                        .panel-heading
+                            .row
+                                .col-xs-3
+                                    i.fa.fa-exchange.fa-5x
+                                .col-xs-9.text-right
+                                    .huge #{totalTransactions}
+                                    div Transactions
+                        a(href='/admin/transactions/view')
+                            .panel-footer
+                                span.pull-left View Details
+                                span.pull-right
+                                    i.fa.fa-arrow-circle-right
+                                .clearfix
+                .col-lg-3.col-md-6
+                    .panel.panel-green
+                        .panel-heading
+                            .row
+                                .col-xs-3
+                                    i.fa.fa-tasks.fa-5x
+                                .col-xs-9.text-right
+                                    .huge #{totalBrilliant}
+                                    div Total brilliant
+                        a(href='/admin/brilliants/view')
+                            .panel-footer
+                                span.pull-left View Details
+                                span.pull-right
+                                    i.fa.fa-arrow-circle-right
+                                .clearfix
+                .col-lg-3.col-md-6
+                    .panel.panel-yellow
+                        .panel-heading
+                            .row
+                                .col-xs-3
+                                    i.fa.fa-shopping-cart.fa-5x
+                                .col-xs-9.text-right
+                                    .huge #{soldBrilliant}
+                                    div Sold brilliant
+                        a(href='/admin/transactions/view')
+                            .panel-footer
+                                span.pull-left View Details
+                                span.pull-right
+                                    i.fa.fa-arrow-circle-right
+                                .clearfix
+                .col-lg-3.col-md-6
+                    .panel.panel-primary
+                        .panel-heading
+                            .row
+                                .col-xs-3
+                                    i.fa.fa-users.fa-5x
+                                .col-xs-9.text-right
+                                    .huge #{totalUsers}
+                                    div Registered user
+                        a(href='/admin/users/view')
+                            .panel-footer
+                                span.pull-left View Details
+                                span.pull-right
+                                    i.fa.fa-arrow-circle-right
+                                .clearfix
+
+
+

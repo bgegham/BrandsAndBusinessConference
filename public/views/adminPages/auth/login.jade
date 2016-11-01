@@ -1,0 +1,21 @@
+extends ../../layouts/admin_layout
+
+block content
+    .container-fluid
+        .row
+            .login-page
+                .form
+                    .form-header
+                        h1 MBABC
+                    .form-body
+                        .switch-form.login-form
+                            p.error-login.error-txt
+                            input#username(type='text', placeholder='username', required)
+                            input#password(type='password', placeholder='password', required)
+                            button#login-button login
+                            p.message
+                                a(href="/") Main site
+
+block specific_scripts
+    script(type="text/javascript", src='/js/login.js')
+
