@@ -1,0 +1,112 @@
+extends ../../layouts/admin_layout
+
+block specific_stylesheets
+    link(rel='stylesheet', href='/css/admin.css')
+    style.
+        .custom-input-file {
+            overflow: hidden;
+            position: relative;
+            width: 200px;
+            height: 200px;
+            background: #eee;
+            background-image: url('/img/avatar_def.jpeg');
+            background-repeat: no-repeat;
+
+            background-size: 200px;
+        }
+
+        input[type="file"] {
+            z-index: 9999;
+            line-height: 0;
+            font-size: 0;
+            position: absolute;
+            opacity: 0;
+            filter: alpha(opacity=0);
+            -ms-filter: "alpha(opacity=0)";
+            margin: 0;
+            padding: 0;
+            left: 0;
+        }
+
+        .uploadPhoto {
+            position: absolute;
+            top: 25%;
+            left: 25%;
+            display: none;
+            width: 50%;
+            height: 50%;
+            color: #fff;
+            text-align: center;
+            line-height: 100px;
+            text-transform: uppercase;
+            background-color: rgba(0, 0, 0, .3);
+            border-radius: 50px;
+            cursor: pointer;
+        }
+
+        .custom-input-file:hover .uploadPhoto {
+            display: block;
+        }
+
+        .role-pr-status span {
+            background: #232C35;
+            padding: 3px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            color: #fff;
+        }
+
+
+
+block content
+    include ../../static/_admin_header
+    #wrapper
+        include ../../static/_sidebar
+        #page-content-wrapper
+            .alert-control(style='display: none;')
+                .alert
+                    a.close(href="#",data-dismiss="alert",aria-label="close") &times;
+                    strong
+            .row
+                .col-xs-12
+                    .box.box-primary
+                        .box-header.with-border
+                            h3.box-title Create partner
+                        form(method="post",role='form', action="/control/admin/partners/add", enctype="multipart/form-data")
+                            .box-body
+                                .row
+                                    .col-xs-6
+                                        .custom-input-file
+                                            label.uploadPhoto
+                                                | Edit
+                                                input#avatar.change-avatar(type='file', name='avatar')
+                                        div
+                                            label Size : (400x400)px
+                                    .col-xs-6
+                                        .form-group
+                                            label(style='margin-top: 25px') Name
+                                                input.form-control(placeholder="Write name...",type="text",name="name",required=true, value=(partner && partner.name) ? partner.name : '')
+                                                if errors && errors.errors.name
+                                                    p.text-error= errors.errors.name
+                                        .form-group
+                                            label(style='margin-top: 25px') Priority
+                                                input.form-control(placeholder="Priority",type="number",name="priority", value=(partner && partner.priority) ? partner.priority : '')
+                                                if errors && errors.errors.priority
+                                                    p.text-error= errors.errors.priority
+
+                            .box-footer.text-right
+                                button.btn.btn3d.btn-default(type='reset', style="margin-right:15px;") Reset
+                                button.btn.btn3d.btn-success(type='submit') Create
+            script.
+                function readURL(input) {
+                    if (input.files && input.files[0]) {
+                        var reader = new FileReader();
+                        reader.onload = function (e) {
+                            $('.custom-input-file').css('background-image', 'url(' + e.target.result + ')');
+                        }
+                        reader.readAsDataURL(input.files[0]);
+                    }
+                }
+                $("#avatar").change(function () {
+                    readURL(this);
+                });

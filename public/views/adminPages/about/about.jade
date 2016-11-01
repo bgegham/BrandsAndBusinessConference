@@ -1,0 +1,52 @@
+extends ../../layouts/admin_layout
+
+block specific_stylesheets
+    link(rel='stylesheet', href='/css/admin.css')
+
+block content
+    include ../../static/_admin_header
+    #wrapper
+        include ../../static/_sidebar
+        #page-content-wrapper
+            .alert-control(style='display: none;')
+                .alert
+                    a.close(href="#",data-dismiss="alert",aria-label="close") &times;
+                    strong
+            .row
+                .col-xs-12
+                    .box.box-primary
+                        .box-header.with-border
+                            h3.box-title About block content
+                        form(method="post",role='form', action="/control/admin/about")
+                            .box-body
+                                .form-group
+                                    label(for='about') New content
+                                    textarea#about.form-control(name="about",rows="4", placeholder='about text', required=true)= (oldVal && oldVal.about) ? oldVal.about : ''
+                                    if errors && errors.about
+                                        p.text-error= errors.about
+                            .box-footer.text-right
+                                button.btn.btn3d.btn-default(type='reset', style="margin-right:15px;") Reset
+                                button.btn.btn3d.btn-success(type='submit') Create
+            hr
+            .row
+                .col-xs-12
+                    .box.box-primary
+                        .box-header.with-border
+                            h3.box-title Submitted content
+                        .box-body
+                            if about.length
+                                table.table
+                                    tbody
+                                        each item in about
+                                            tr
+                                                td(style="padding:0 15px")
+                                                    form(action="/control/admin/about/delete", method="post",style="display: inline;")
+                                                        input(type="hidden",value=item._id,name="id")
+                                                        button.btn.btn-xs.btn-danger(type="submit",onclick="return confirm('Are you sure?')")
+                                                            i.fa.fa-trash-o
+                                                td
+                                                    p= item.text
+                            else
+                                p Nothing to show
+
+

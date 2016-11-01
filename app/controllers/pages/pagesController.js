@@ -11,11 +11,32 @@ var config                  = require('../../../config')[APP_ENV],
 
 var PagesController = function() {};
 
-PagesController.prototype.mainPage =  function (request, response) {
+PagesController.prototype.mainPage      =  function (request, response) {
     response.render( path.resolve('public/views/pages/main/index.jade'), {
-        title       : "RICHSTONE: index page"
+        title       : "Brands & Business: index page"
     });
     response.end();
 };
+
+PagesController.prototype.pageNotFound  =  function (request, response) {
+    response.render( path.resolve('public/views/errors/404.jade'), {
+        title           : "Brands & Business: PAGE NOT FOUND"
+    });
+    response.end();
+};
+
+PagesController.prototype.imageShow     =  function (request, response) {
+    var gfs = GRIDFS(CONNECTION.db);
+    gfs.exist( { _id: request.params.id }, function (err, found) {
+        if (err || !found) {
+            ResponseUtils.notFound(response);
+        } else {
+            var readStream = gfs.createReadStream({ _id: request.params.id });
+            readStream.pipe(response);
+        }
+    });
+};
+
+
 
 module.exports = new PagesController();

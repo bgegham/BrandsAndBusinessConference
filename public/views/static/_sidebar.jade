@@ -19,54 +19,64 @@ script.
                 |   #{username}
         li(class=(active_menu === 'dashboard' ? 'activeMenu' : ''))
             span.selected
-            a(href="/admin/dashboard")
+            a(href="/control/admin/dashboard")
                 i.fa.fa-dashboard
-                span    Dashboard
-        li(class=(active_menu === 'brilliants' ? 'activeMenu' : ''), data-toggle="collapse",data-target="#_brilliants", data-parent="#myAccordion")
+                span    Statistics
+        li(class=(active_menu === 'subscribers' ? 'activeMenu' : ''))
+            span.selected
+            a(href="/control/admin/subscribers")
+                i.fa.fa-address-book-o
+                span    Subscribers
+        li(class=(active_menu === 'slider' ? 'activeMenu' : ''), data-toggle="collapse",data-target="#_slider", data-parent="#myAccordion")
             span.selected
             a
-                i.fa.fa-diamond
-                span Brilliants
+                i.fa.fa-file-image-o
+                span Image slider
                 span.pull-right-container
                     i.fa.fa-angle-left.pull-right
-            ul#_brilliants.sub-menu.collapse
+            ul#_slider.sub-menu.collapse
                 li
-                    a(href="/admin/brilliants/view")
+                    a(href="/control/admin/slider")
                         i.fa.fa-angle-double-right
                         |  View
                 li
-                    a(href="/admin/brilliants/add")
+                    a(href="/control/admin/slider/add")
                         i.fa.fa-angle-double-right
                         |  Add
-        li(class=(active_menu === 'users' ? 'activeMenu' : ''), data-toggle="collapse",data-target="#_usersList", data-parent="#myAccordion")
+        li(class=(active_menu === 'about' ? 'activeMenu' : ''))
+            span.selected
+            a(href="/control/admin/about")
+                i.fa.fa-id-card-o
+                span    About text
+        li(class=(active_menu === 'agenda' ? 'activeMenu' : ''), data-toggle="collapse",data-target="#_agenda", data-parent="#myAccordion")
             span.selected
             a
-                i.fa.fa-users
-                span Users
+                i.fa.fa-calendar-check-o
+                span Agenda
                 span.pull-right-container
                     i.fa.fa-angle-left.pull-right
-            ul#_usersList.sub-menu.collapse
+            ul#_agenda.sub-menu.collapse
                 li
-                    a(href="/admin/users/view")
+                    a(href="/control/admin/agenda")
                         i.fa.fa-angle-double-right
                         |  View
                 li
-                    a(href="/admin/users/addFake")
+                    a(href="/control/admin/agenda/add")
                         i.fa.fa-angle-double-right
-                        |  Add (fake)
-        li(class=(active_menu === 'transactions' ? 'activeMenu' : ''), data-toggle="collapse",data-target="#_transactions", data-parent="#myAccordion")
+                        |  Add
+        li(class=(active_menu === 'partners' ? 'activeMenu' : ''), data-toggle="collapse",data-target="#_partners", data-parent="#myAccordion")
             span.selected
             a
-                i.fa.fa-exchange
-                span Transactions
+                i.fa.fa-briefcase
+                span Partners
                 span.pull-right-container
                     i.fa.fa-angle-left.pull-right
-            ul#_transactions.sub-menu.collapse
+            ul#_partners.sub-menu.collapse
                 li
-                    a(href="/admin/transactions/view")
+                    a(href="/control/admin/partners")
                         i.fa.fa-angle-double-right
                         |  View
                 li
-                    a(href="/admin/transactions/addFake")
+                    a(href="/control/admin/partners/add")
                         i.fa.fa-angle-double-right
-                        |  Add (fake)
+                        |  Add

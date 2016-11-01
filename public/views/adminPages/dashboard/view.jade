@@ -4,7 +4,7 @@ block specific_stylesheets
     link(rel='stylesheet', href='/css/admin.css')
 
 block content
-    include ../../static/_header
+    include ../../static/_admin_header
     #wrapper
         include ../../static/_sidebar
         #page-content-wrapper
@@ -14,11 +14,11 @@ block content
                         .panel-heading
                             .row
                                 .col-xs-3
-                                    i.fa.fa-exchange.fa-5x
+                                    i.fa.fa-address-book-o.fa-5x
                                 .col-xs-9.text-right
-                                    .huge #{totalTransactions}
-                                    div Transactions
-                        a(href='/admin/transactions/view')
+                                    .huge #{totalUsers}
+                                    div Subscribers
+                        a(href='/control/admin/dashboard')
                             .panel-footer
                                 span.pull-left View Details
                                 span.pull-right
@@ -29,11 +29,11 @@ block content
                         .panel-heading
                             .row
                                 .col-xs-3
-                                    i.fa.fa-tasks.fa-5x
+                                    i.fa.fa-calendar-check-o.fa-5x
                                 .col-xs-9.text-right
-                                    .huge #{totalBrilliant}
-                                    div Total brilliant
-                        a(href='/admin/brilliants/view')
+                                    .huge #{totalAgenda}
+                                    div Events
+                        a(href='/control/admin/agenda')
                             .panel-footer
                                 span.pull-left View Details
                                 span.pull-right
@@ -44,11 +44,11 @@ block content
                         .panel-heading
                             .row
                                 .col-xs-3
-                                    i.fa.fa-shopping-cart.fa-5x
+                                    i.fa.fa-briefcase.fa-5x
                                 .col-xs-9.text-right
-                                    .huge #{soldBrilliant}
-                                    div Sold brilliant
-                        a(href='/admin/transactions/view')
+                                    .huge #{soldPartners}
+                                    div Partners
+                        a(href='/control/admin/partners')
                             .panel-footer
                                 span.pull-left View Details
                                 span.pull-right
@@ -61,9 +61,9 @@ block content
                                 .col-xs-3
                                     i.fa.fa-users.fa-5x
                                 .col-xs-9.text-right
-                                    .huge #{totalUsers}
-                                    div Registered user
-                        a(href='/admin/users/view')
+                                    .huge #{totalSpeakers}
+                                    div Speakers
+                        a(href='/control/admin/speakers')
                             .panel-footer
                                 span.pull-left View Details
                                 span.pull-right

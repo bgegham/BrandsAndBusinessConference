@@ -1,0 +1,51 @@
+extends ../../layouts/admin_layout
+
+block specific_stylesheets
+    link(rel='stylesheet', href='/css/admin.css')
+    style.
+        /*Business Card Css */
+        .business-card {
+            border: 1px solid #cccccc;
+            background: #f8f8f8;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        .profile-img {
+            height: 50px;
+            background: white;
+        }
+        .mail {
+            font-size: 13px;
+        }
+
+block content
+    include ../../static/_admin_header
+    #wrapper
+        include ../../static/_sidebar
+        #page-content-wrapper
+            .row
+                .col-xs-12
+                    .box.box-primary
+                        .box-header.with-border
+                            h3.box-title Subscribers list
+                        .row
+                            if subscribers.length
+                                .box-body
+                                    each item in subscribers
+                                        .col-sm-4
+                                            .business-card
+                                                .media
+                                                    .media-left
+                                                        img.media-object.img-circle.profile-img(src='http://s3.amazonaws.com/37assets/svn/765-default-avatar.png')
+                                                    .media-body
+                                                        h4.media-heading= item.name
+                                                        .mail
+                                                            a(href='mailto:'+item.email)= item.email
+                                                    .media-date.text-muted.pull-right= item.created_at
+                            else
+                                .box-body
+                                    .col-sm-4
+                                        .business-card
+                                            .media
+                                                p Nothing to show
