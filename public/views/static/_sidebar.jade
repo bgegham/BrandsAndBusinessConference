@@ -27,6 +27,11 @@ script.
             a(href="/control/admin/subscribers")
                 i.fa.fa-address-book-o
                 span    Subscribers
+        li(class=(active_menu === 'about' ? 'activeMenu' : ''))
+            span.selected
+            a(href="/control/admin/about")
+                i.fa.fa-id-card-o
+                span    About text
         li(class=(active_menu === 'slider' ? 'activeMenu' : ''), data-toggle="collapse",data-target="#_slider", data-parent="#myAccordion")
             span.selected
             a
@@ -43,11 +48,6 @@ script.
                     a(href="/control/admin/slider/add")
                         i.fa.fa-angle-double-right
                         |  Add
-        li(class=(active_menu === 'about' ? 'activeMenu' : ''))
-            span.selected
-            a(href="/control/admin/about")
-                i.fa.fa-id-card-o
-                span    About text
         li(class=(active_menu === 'agenda' ? 'activeMenu' : ''), data-toggle="collapse",data-target="#_agenda", data-parent="#myAccordion")
             span.selected
             a
@@ -78,5 +78,21 @@ script.
                         |  View
                 li
                     a(href="/control/admin/partners/add")
+                        i.fa.fa-angle-double-right
+                        |  Add
+        li(class=(active_menu === 'speakers' ? 'activeMenu' : ''), data-toggle="collapse",data-target="#_speaker", data-parent="#myAccordion")
+            span.selected
+            a
+                i.fa.fa-users
+                span Speakers
+                span.pull-right-container
+                    i.fa.fa-angle-left.pull-right
+            ul#_speaker.sub-menu.collapse
+                li
+                    a(href="/control/admin/speaker")
+                        i.fa.fa-angle-double-right
+                        |  View
+                li
+                    a(href="/control/admin/speaker/add")
                         i.fa.fa-angle-double-right
                         |  Add

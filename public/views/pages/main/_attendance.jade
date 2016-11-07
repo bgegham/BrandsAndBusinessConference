@@ -1,0 +1,112 @@
+div#buyTicket
+    .container
+        div
+            .row
+                h1 Buy a ticket
+                hr
+            .row
+                .cd-pricing-container.cd-has-margins
+                    .cd-pricing-switcher
+                        p.fieldset
+                            input#monthly-2(type='radio', name='duration-2', value='monthly', checked='')
+                            label(for='monthly-2') Armenia
+                            input#yearly-2(type='radio', name='duration-2', value='yearly')
+                            label(for='yearly-2') Georgia
+                            span.cd-switch
+                    ul.cd-pricing-list.cd-bounce-invert
+                        li
+                            ul.cd-pricing-wrapper
+                                li.is-visible(data-type='monthly')
+                                    header.cd-pricing-header
+                                        h2 Regular tickets
+                                        .cd-price.text-center
+                                            span.cd-value
+                                                i.fa.fa-ticket.fa-rotate-45
+                                    .cd-pricing-body
+                                        ul.cd-pricing-features
+                                            li
+                                                em EARLY BIRD: book your ticket from October 31 st to November 11 th
+                                                p  AMD 38000
+                                            li
+                                                em NOT-SO- EARLY BIRD: book your ticket from November 12 th to November 26 th
+                                                p  AMD 48000
+                                        footer.cd-pricing-footer
+                                            a.cd-selectf(href='#contacts') To purchase tickets please contact
+                                li.is-hidden(data-type='yearly')
+                                    header.cd-pricing-header
+                                        h2 Regular tickets
+                                        .cd-price.text-center
+                                            span.cd-value
+                                                i.fa.fa-ticket.fa-rotate-45
+                                    .cd-pricing-body
+                                        ul.cd-pricing-features
+                                            li
+                                                em EARLY BIRD: book your ticket from October 31 st to November 11 th
+                                                p  150 GEL
+                                            li
+                                                em NOT-SO- EARLY BIRD: book your ticket from November 12 th to November 24 th
+                                                p  180 GEL
+                                        footer.cd-pricing-footer
+                                            a.cd-selectf(href='http://address') Purchase tickets
+                        li.cd-popular
+                            ul.cd-pricing-wrapper
+                                li.is-visible(data-type='monthly')
+                                    header.cd-pricing-header
+                                        h2 Specials
+                                        .cd-price.text-center
+                                            span.cd-value
+                                                i.fa.fa-ticket.fa-rotate-45
+                                    .cd-pricing-body
+                                        ul.cd-pricing-features
+                                            li
+                                                em Student discount: 30% off single ticket
+                                            li
+                                                em Participation to Gala Dinner: additional
+                                                p 25000 AMD
+                                    footer.cd-pricing-footer
+                                        a.cd-selectf(href='#contacts') To purchase tickets please contact
+                                li.is-hidden(data-type='yearly')
+                                    header.cd-pricing-header
+                                        h2 Specials
+                                        .cd-price.text-center
+                                            span.cd-value
+                                                i.fa.fa-ticket.fa-rotate-45
+                                    .cd-pricing-body
+                                        ul.cd-pricing-features
+                                            li
+                                                em Student discount: 30% off single ticket
+                                            li
+                                                em Participation to Gala Dinner: additional
+                                                p 100 GEL
+                                    footer.cd-pricing-footer
+                                        a.cd-selectf(href='http://address') Purchase tickets
+                        li
+                            ul.cd-pricing-wrapper
+                                li.is-visible(data-type='monthly')
+                                    header.cd-pricing-header
+                                        h2 Corporate Packages
+                                        .cd-price.text-center
+                                            span.cd-value
+                                                i.fa.fa-ticket.fa-rotate-45
+                                    .cd-pricing-body
+                                        ul.cd-pricing-features
+                                            li
+                                                em 2-4 members: 5% discount off total sum
+                                            li
+                                                em 5 and more members: 10% discount off total sum
+                                    footer.cd-pricing-footer
+                                        a.cd-selectf(href='#contacts') To purchase tickets please contact
+                                li.is-hidden(data-type='yearly')
+                                    header.cd-pricing-header
+                                        h2 Corporate Packages
+                                        .cd-price.text-center
+                                            span.cd-value
+                                                i.fa.fa-ticket.fa-rotate-45
+                                    .cd-pricing-body
+                                        ul.cd-pricing-features
+                                            li
+                                                em 2-4 members: 5% discount off total sum
+                                            li
+                                                em 5 and more members: 10% discount off total sum
+                                    footer.cd-pricing-footer
+                                        a.cd-selectf(href='http://address') Purchase tickets

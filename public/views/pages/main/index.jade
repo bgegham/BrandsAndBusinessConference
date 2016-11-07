@@ -3,51 +3,43 @@ extends ../../layouts/index_layout
 block content
     include ../../static/_header
 
-    .slider.nav-section#home
-      .slider__slides
-        .slide.s--active
-          .slide__inner
-            .slide__content
-              h1.slide__heading Clip-Path Revealing Slider
-              p.slide__text Greetings, Traveler!
-        .slide
-          .slide__inner
-            .slide__content
-              h1.slide__heading Simple Animation
-              p.slide__text Clip-path magic!
-        .slide
-          .slide__inner
-            .slide__content
-              h1.slide__heading Very Stylish Effect!
-              p.slide__text It looks cool, isn&apos;t it?
-        .slide
-          .slide__inner
-            .slide__content
-              h1.slide__heading Limited browser support
-              p.slide__text Forget about IE/Edge and FF
-        .slide.s--prev
-          .slide__inner
-            .slide__content
-              h1.slide__heading Check my other stuff!
-              p.slide__text
-                a(href='http://codepen.io/suez/pens/public/', target='_blank') Other demos
-                |  and
-                a(href='https://twitter.com/NikolayTalanov', target='_blank') Twitter
-      // slides end
-      .slider__control
-        .slider__control-line
-        .slider__control-line
-      #autoChange.slider__control.slider__control--right.m--right
-        .slider__control-line
-        .slider__control-line
+    main.cd-main-content.cd-section
 
+        include _slider
 
-    main.cd-main-content
-        .content-center.nav-section#about
-            h1 BRANDS &amp; BUSINESS: WHY ORGANIZE AND WHY ATTEND?
-            p
-            | The world is changing fast. New technologies, companies, influencers and trends
-            | emerge every month. Naturally, branding is affected by those changes more than any
-            | other industry. In fact the change is so dramatic, that the moment a new book or study
-            | is published it is often regarded outdated.
+        section.content-wrapper
+            .content-center.nav-section
 
+                include _about
+                include _moreInfo
+                .clearfix
+
+                include _agenda
+                .clearfix
+
+                include _giftBl1
+                .clearfix
+
+                include _speakers
+                .clearfix
+
+                include _attendance
+                .clearfix
+
+                include _creatorQote
+                .clearfix
+
+                include _partners
+                .clearfix
+
+                include _giftBl1
+                .clearfix
+
+                include _bb2011
+                .clearfix
+
+                include _footer
+                .clearfix
+
+                .scrollToTop
+                    i.fa.fa-chevron-up

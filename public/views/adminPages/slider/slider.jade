@@ -1,0 +1,46 @@
+extends ../../layouts/admin_layout
+
+block specific_stylesheets
+    link(rel='stylesheet', href='/css/admin.css')
+    style.
+        img{
+            max-width: 100%;
+        }
+        .prt-delete{
+            font-size: 24px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+block content
+    include ../../static/_admin_header
+    #wrapper
+        include ../../static/_sidebar
+        #page-content-wrapper
+            .alert-control(style='display: none;')
+                .alert
+                    a.close(href="#",data-dismiss="alert",aria-label="close") &times;
+                    strong
+            .row
+                .col-xs-12
+                    .box.box-primary
+                        .box-header.with-border
+                            h3.box-title Images on main page slider
+                        .box-body
+                            .row
+                                .col-xs-12
+                                    if slider.length
+                                        each item in slider
+                                            .col-sm-12
+                                                form(action="/control/admin/slider/delete", method="post",style="display: inline;")
+                                                    input(type="hidden",value=item._id,name="id")
+                                                    input(type="hidden",value=item.image,name="image_id")
+                                                    button.btn.prt-delete.btn-xs.btn-danger(type="submit",onclick="return confirm('Are you sure?')",title="Delete")
+                                                        i.fa.fa-trash-o
+                                                img(src='/images/'+item.image, alt=item.name)
+                                                h4= item.name
+                                                h6= item.description
+                                            .clearfix
+                                            hr
+                                    else
+                                            h4.card-title Nothing to show

@@ -1,4 +1,10 @@
 $(document).ready(function(){
+    setTimeout(function(){
+        $('body').addClass('ready-load');
+    },500);
+    $('.agenda-control').on('click', function () {
+        $($(this).data('target')).collapse('toggle');
+    });
     // show notification
     switch (getCookie('sns')) {
         case 'true':
@@ -15,6 +21,48 @@ $(document).ready(function(){
         $(".alert").fadeOut('slow');
     }, 2500);
 
+    $(window).bind("scroll", function() {
+        if ( this .pageYOffset < 400){
+            $('.scrollToTop').fadeOut();
+        } else {
+            $('.scrollToTop').fadeIn();
+        }
+    });
+
+    $('.scrollToTop').on('click touch', function (e) {
+        $('html, body').stop().animate({
+            scrollTop: 0
+        }, 500);
+        e.preventDefault();
+    });
+    function contactUs() {
+        $.ajax({
+            type: 'post',
+            dataType: 'json',
+            url: '/contactus',
+            data : {
+                email       : $('#email').val(),
+                fullName    : $('#fullname').val()
+            },
+            success: function (data) {
+                $('.errorFullname').html("");
+                $('.errorEmail').html("");
+                $('.contact-form').hide();
+                $('.contact-form-success').show();
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                $('.contact-form-success').hide();
+                $('.contact-form').show();
+                var errors = JSON.parse(XMLHttpRequest.responseText).errors;
+                $('.errorFullname').html(errors.name);
+                $('.errorEmail').html(errors.email);
+
+            }
+        });
+    }
+    $('#contactUsSubmit').click(function () {
+        contactUs();
+    });
 
 });
 

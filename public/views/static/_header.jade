@@ -1,26 +1,25 @@
 header.cd-main-header.animate-search
     .cd-logo
-        a(href='#0')
-            img(src='img/maeutica_logo.png', alt='Logo')
+        a(href='/')
+            img(src='img/logo_colored.png', alt='Logo')
     nav.cd-main-nav-wrapper
-        a.cd-search-trigger.cd-text-replace(href='#search') Search
+        //a.cd-search-trigger.cd-text-replace(href='#search') Search
         ul.cd-main-nav.cl-effect-4
-            li.selected-nav.home
-                a(href='#home') Home
-            li
+            li.selected-nav
                 a(href='#about') About
             li
-                a(href='#0') Agenda
+                a(href='#agenda') Agenda
             li
-                a(href='#0') Speakers
+                a(href='#speakers') Speakers
             li
-                a(href='#0') Partners
+                a(href='#buyTicket') Buy a ticket
+            if _partnerData.length
+                li
+                    a(href='#partners') Partners
             li
-                a(href='#0') Conference 2011
+                a(href='#conference') Conference 2011
             li
-                a(href='#0') Contacts
-        // .cd-main-nav
-    // .cd-main-nav-wrapper
+                a(href='#contacts') Contacts
     a.cd-nav-trigger.cd-text-replace(href='#0')
         | Menu
         span
@@ -28,7 +27,7 @@ header.cd-main-header.animate-search
 
 #search.cd-main-search
     form
-        input(type='search', placeholder='Search...')
+        //input(type='search', placeholder='Search...')
         .cd-select
             span in
             | &nbsp;
@@ -47,20 +46,19 @@ header.cd-main-header.animate-search
                     h4
                         a.cd-nowrap(href='#0') Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                     time(datetime='2016-01-12') Feb 03, 2016
-        // .news
         .quick-links
             h3 Quick Links
             ul
                 li
-                    a(href='#0') Find a store
+                    a(href='#about') About
                 li
-                    a(href='#0') Accessories
+                    a(href='#agenda') Agenda
                 li
-                    a(href='#0') Warranty info
+                    a(href='#speakers') Speakers
                 li
-                    a(href='#0') Support
+                    a(href='#partners') Partners
                 li
-                    a(href='#0') Contact us
+                    a(href='#contacts') Contact us
         // .quick-links
     // .cd-search-suggestions
     a.close.cd-text-replace(href='#0') Close Form

@@ -1,0 +1,22 @@
+#myCarousel.carousel.slide(data-ride='carousel')
+    // Wrapper for slides
+    .carousel-inner(role='listbox')#home
+        each item, key in _sliderData
+            if key == 0
+                .item.active
+                    img(src="/images/"+_sliderData[0].image, alt='image')
+            else
+                .item
+                    img(src="/images/"+item.image)
+    // Left and right controls
+    a.left.carousel-control(href='#myCarousel', role='button', data-slide='prev')
+        span.glyphicon.glyphicon-chevron-left(aria-hidden='true')
+        span.sr-only Previous
+    a.right.carousel-control(href='#myCarousel', role='button', data-slide='next')
+        span.glyphicon.glyphicon-chevron-right(aria-hidden='true')
+        span.sr-only Next
+
+script.
+    $('#myCarousel').carousel({
+        interval: 900000
+    })

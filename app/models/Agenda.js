@@ -3,14 +3,56 @@ var config              = require('../../config')[APP_ENV],
     Schema              = mongoose.Schema,
     uniqueValidator     = require('mongoose-unique-validator');
 
+var descriptionLeft = new Schema([
+    { text : String },
+    { text : String },
+    { text : String },
+    { text : String },
+    { text : String },
+    { text : String },
+    { text : String },
+    { text : String }
+]);
+var descriptionRight = new Schema([
+    { text : String },
+    { text : String },
+    { text : String },
+    { text : String },
+    { text : String },
+    { text : String },
+    { text : String },
+    { text : String }
+]);
+var _selfSpeakers = new Schema([
+    { text : String },
+    { text : String },
+    { text : String },
+    { text : String },
+    { text : String },
+    { text : String },
+    { text : String },
+    { text : String }
+]);
 var agendaSchema = new Schema({
-    name : {
+    date : {
+        type: String
+    },
+    label : {
         type: String,
+        default : "",
         index: true
     },
-    avatar: {
-        type : Schema.ObjectId
+    time : {
+        type: String,
+        default : ""
     },
+    date_sm : {
+        type: String,
+        default : ""
+    },
+    descriptionLeft : descriptionLeft,
+    descriptionRight : descriptionRight,
+    speakers: _selfSpeakers,
     created_at: {
         type: Date,
         default: Date.now,

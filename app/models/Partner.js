@@ -8,6 +8,9 @@ var partnerSchema = new Schema({
         type: String,
         index: true
     },
+    link : {
+        type: String
+    },
     avatar: {
         type : Schema.ObjectId
     },

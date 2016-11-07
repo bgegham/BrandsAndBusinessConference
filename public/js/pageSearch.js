@@ -1,38 +1,50 @@
 jQuery(document).ready(function($){
 
-    var contentSections = $('body .nav-section');
-    //smooth scroll to the selected section
-    $('.cd-main-nav a[href^="#"]').click(function(event){
-        event.preventDefault();
-
-        var target= $(this.hash),
-            topMargin = target.css('marginTop').replace('px', ''),
-            hedearHeight = $('header').height();
-        $('body,html').animate({'scrollTop': parseInt(target.offset().top - hedearHeight - topMargin)}, 450);
-
-        $('.cd-main-nav').find('li').removeClass('selected-nav');
-        $('li.'+target.selector.replace('#', '')).addClass('selected-nav');
-    });
-
-    //update selected navigation element
-    $(window).on('scroll', function(){
-        updateNavigation();
-    });
-
-    function updateNavigation() {
-        contentSections.each(function(){
-            var actual = $(this),
-                actualHeight = actual.height(),
-                topMargin = actual.css('marginTop').replace('px', ''),
-                actualAnchor = $('.cd-main-nav').find('a[href="#'+actual.attr('id')+'"]');
-
-            if ( ( parseInt(actual.offset().top - $('.cd-main-nav').height() - topMargin )<= $(window).scrollTop() ) && ( parseInt(actual.offset().top +  actualHeight - topMargin )  > $(window).scrollTop() +1 ) ) {
-                actualAnchor.parent('li').addClass('selected-nav');
-            }else {
-                actualAnchor.parent('li').removeClass('selected-nav');
-            }
+    var lastId,
+        topMenu = $(".cd-main-nav"),
+        topMenuHeight = topMenu.outerHeight(),
+        // All list items
+        menuItems = topMenu.find("a"),
+        // Anchors corresponding to menu items
+        scrollItems = menuItems.map(function(){
+            var item = $($(this).attr("href"));
+            if (item.length) { return item; }
         });
-    }
+
+// Bind click handler to menu items
+// so we can get a fancy scroll animation
+    menuItems.click(function(e){
+        var href = $(this).attr("href"),
+            offsetTop = href === "#" ? 0 : $(href).offset().top-topMenuHeight+1;
+        $('html, body').stop().animate({
+            scrollTop: offsetTop
+        }, 400);
+        mainHeader.add(navigation).add(pageContent).toggleClass('nav-is-visible');
+        e.preventDefault();
+    });
+
+// Bind to scroll
+    $(window).scroll(function(){
+        // Get container scroll position
+        var fromTop = $(this).scrollTop()+topMenuHeight;
+
+        // Get id of current scroll item
+        var cur = scrollItems.map(function(){
+            if ($(this).offset().top < fromTop)
+                return this;
+        });
+        // Get the id of the current element
+        cur = cur[cur.length-1];
+        var id = cur && cur.length ? cur[0].id : "";
+
+        if (lastId !== id) {
+            lastId = id;
+            // Set/remove active class
+            menuItems
+                .parent().removeClass("selected-nav")
+                .end().filter("[href='#"+id+"']").parent().addClass("selected-nav");
+        }
+    });
 
     var resizing = false,
         navigationWrapper = $('.cd-main-nav-wrapper'),

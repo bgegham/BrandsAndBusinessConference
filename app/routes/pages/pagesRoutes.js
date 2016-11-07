@@ -6,6 +6,8 @@ module.exports = function(app, multipart) {
 
     app.get('/404',          multipart.array(), function(req, res){ pagesController.pageNotFound(req, res); });
 
+    app.post('/contactus',   multipart.array(), function(req, res){ pagesController.contactUs(req, res); });
+
     app.get('/images/:id',   function(req, res) { pagesController.imageShow(req, res); });
 
 };

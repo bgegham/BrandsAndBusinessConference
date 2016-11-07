@@ -6,7 +6,20 @@ var config              = require('../../config')[APP_ENV],
 var speakerSchema = new Schema({
     name : {
         type: String,
-        index: true
+        index: true,
+        default: ""
+    },
+    position : {
+        type: String,
+        default: ""
+    },
+    company : {
+        type: String,
+        default: ""
+    },
+    country : {
+        type: String,
+        default: ""
     },
     avatar: {
         type : Schema.ObjectId

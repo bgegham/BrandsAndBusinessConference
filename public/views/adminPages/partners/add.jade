@@ -85,14 +85,19 @@ block content
                                     .col-xs-6
                                         .form-group
                                             label(style='margin-top: 25px') Name
-                                                input.form-control(placeholder="Write name...",type="text",name="name",required=true, value=(partner && partner.name) ? partner.name : '')
-                                                if errors && errors.errors.name
-                                                    p.text-error= errors.errors.name
+                                            input.form-control(placeholder="Write name...",type="text",name="name",required=true, value=(partner && partner.name) ? partner.name : '')
+                                            if errors && errors.errors.name
+                                                p.text-error= errors.errors.name
+                                        .form-group
+                                            label(style='margin-top: 25px') URL from site
+                                            input.form-control(placeholder="http://",type="text",name="link",required=true, value=(partner && partner.link) ? partner.link : '')
+                                            if errors && errors.errors.link
+                                                p.text-error= errors.errors.link
                                         .form-group
                                             label(style='margin-top: 25px') Priority
-                                                input.form-control(placeholder="Priority",type="number",name="priority", value=(partner && partner.priority) ? partner.priority : '')
-                                                if errors && errors.errors.priority
-                                                    p.text-error= errors.errors.priority
+                                            input.form-control(placeholder="Priority",type="number",name="priority", value=(partner && partner.priority) ? partner.priority : '')
+                                            if errors && errors.errors.priority
+                                                p.text-error= errors.errors.priority
 
                             .box-footer.text-right
                                 button.btn.btn3d.btn-default(type='reset', style="margin-right:15px;") Reset

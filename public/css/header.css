@@ -13,14 +13,9 @@ html {
 
 body {
     font-size: 1.6rem;
-    font-family: "Open Sans", sans-serif;
-    color: #333545;
-    background-color: #ffffff;
-}
-
-a {
-    color: #dd85ac;
-    text-decoration: none;
+    font-family: 'Lato', sans-serif;
+    color: #5d5d5d;
+    background-color: #f5f5f5;
 }
 
 img {
@@ -57,7 +52,10 @@ select {
     background-color: transparent;
     cursor: pointer;
 }
-
+h1{
+    margin: 35px 0;
+    line-height: 1.2;
+}
 .cd-select::after {
     /* switcher arrow for select element */
     content: '';
@@ -98,9 +96,8 @@ Header
     position: fixed;
     width: 100%;
     top: 0;
-
     z-index: 4;
-    height: 50px;
+    height: 70px;
     background-color: #fff;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -129,6 +126,9 @@ Header
 @media only screen and (min-width: 1024px) {
     .cd-main-header {
         height: 80px;
+    }
+    body{
+        padding: 80px 0 0 0!important;
     }
     .cd-main-header.nav-is-visible {
         -webkit-transform: translateX(0);
@@ -166,8 +166,9 @@ Header
 }
 .cd-logo img {
     display: block;
-    margin-top: 5px;
-    width: 115px;
+    margin-top: 15px;
+    width: 200px;
+    cursor: pointer;
 }
 @media only screen and (min-width: 1024px) {
     .cd-logo {
@@ -176,8 +177,8 @@ Header
         margin-left: 5%;
     }
     .cd-logo img {
-        margin-top: 12px;
-        width: 85%;
+        margin-top: 20px;
+        width: 200px;
     }
 }
 
@@ -269,13 +270,13 @@ Header
 
 .cd-main-nav {
     position: fixed;
-    z-index: 15;
+    z-index: 1;
     top: 0;
     right: 0;
     width: 260px;
     height: 100vh;
     overflow: auto;
-    background: #1f2029;
+    color: #fff;
     visibility: hidden;
     -webkit-transition: visibility 0s 0.3s;
     -moz-transition: visibility 0s 0.3s;
@@ -286,7 +287,7 @@ Header
     font-size: 1.6rem;
     padding: 0 2em 0 1em;
     line-height: 50px;
-    color: #333545;
+    color: #1c1c1c;
     border-bottom: 1px solid #333545;
     -webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
     -moz-transition: -moz-transform 0.3s, opacity 0.3s;
@@ -307,6 +308,7 @@ Header
     transition: visibility 0s;
     visibility: visible;
     -webkit-overflow-scrolling: touch;
+    background: #fff;
 }
 @media only screen and (min-width: 1024px) {
     .cd-main-nav {
@@ -323,7 +325,7 @@ Header
         display: inline-block;
         float: left;
         height: 100%;
-        padding: 1.375em .4em;
+        padding: 1.375em .2em;
     }
     .cd-main-nav a {
         padding: .625em .8em;
@@ -529,6 +531,9 @@ Search Form
         -webkit-animation: cd-slide-in 0.3s;
         -moz-animation: cd-slide-in 0.3s;
         animation: cd-slide-in 0.3s;
+    }
+    .cd-logo {
+        z-index: 1;
     }
 }
 
@@ -828,8 +833,8 @@ Page main content
     display: table;
     width: 100%;
     position: relative;
+    background-color: #f9f8f8;
     z-index: 2;
-    background-color: #fff;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-transition: -webkit-transform 0.3s;
@@ -842,10 +847,11 @@ Page main content
     text-align: center;
 }
 .cd-main-content .content-center h1 {
-    color: #333545;
-    font-size: 2.4rem;
-    margin-bottom: .6em;
-    margin-top: 1em;
+    color: #909090;
+    font-weight: 300;
+    font-size: 48px;
+    margin: 4.375rem 1.25rem;
+    line-height: 1.3;
 }
 .cd-main-content .cd-download-btn {
     background: #dd85ac;
@@ -866,7 +872,7 @@ Page main content
 }
 @media only screen and (min-width: 1024px) {
     .cd-main-content .content-center h1 {
-        font-size: 3.6rem;
+        font-size: 48px;
     }
     .cd-main-content.nav-is-visible {
         -webkit-transform: translateX(0);
@@ -977,7 +983,7 @@ JavaScript Disabled
     left: 0;
     width: 100%;
     height: 1px;
-    background: #b9b9b9;
+    background: #909090;
     content: '';
     opacity: 0;
     -webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
@@ -990,7 +996,7 @@ JavaScript Disabled
 
 .cl-effect-4 li:hover::after{
     bottom: 0px;
-    height: 5px;
+    height: 2px;
     opacity: 1;
     -webkit-transform: translateY(0px);
     -moz-transform: translateY(0px);
@@ -998,7 +1004,7 @@ JavaScript Disabled
 }
 .cl-effect-4 li.selected-nav::after{
     bottom: 0px;
-    height: 5px;
+    height: 2px;
     opacity: 1;
     -webkit-transform: translateY(0px);
     -moz-transform: translateY(0px);

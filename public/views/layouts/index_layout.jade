@@ -5,12 +5,16 @@ html
         meta(charset="utf-8")
         <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><![endif]-->
         meta(content="width=device-width, initial-scale=1.0, maximum-scale=1", name="viewport")
-
+        meta(name="description" content="It's been called 'the best technology conference on the planet'. But we just think it's different. And that difference works for Web Summit attendees, ranging from Fortune 500 companies to the most exciting startups in the world. Our speakers may be world class, but our networking is simply legendary.")
+        meta(name="robots" content="all")
+        meta(name="keywords" content="branding conference, maeutica, brands&business, branding, brand&fashion, fashion branding, Brands & finance, financial branding, Brands&hr, HR branding, Brands&trends, trending brands design, digital branding, place branding, branding conference in Armenia")
         // title
         title= title
 
         // stylesheets
-        link(rel='shortcut icon', href='/images/favicon.ico', type='image/x-icon')
+        link(rel='icon', href='/img/favicon.png', type='image/png')
+        link(rel='mask-icon', href='/img/icon.svg', color='blue')
+        link(rel='image/svg+xml', href='/img/favicon.svg', type='image/png')
         link(rel='stylesheet', href='/libs/bootstrap/dist/css/bootstrap.min.css')
         link(rel='stylesheet', href='/libs/font-awesome/css/font-awesome.min.css')
 
@@ -20,17 +24,28 @@ html
         link(rel='stylesheet', href='/css/slider.css')
         link(rel='stylesheet', href='/css/main.css')
         link(rel='stylesheet', href='/css/response.css')
+        link(rel='stylesheet', href='/css/cd-rotate.css')
+        link(rel='stylesheet', href='/css/moreinfo-style.css')
+        link(rel='stylesheet', href='/css/agenda.css')
 
         // javascript
         script(type="text/javascript", src='/libs/jquery/dist/jquery.min.js')
+        script(type="text/javascript", src='/libs/bootstrap/dist/js/bootstrap.min.js')
         script(type="text/javascript", src='/js/modernizr.js')
 
         // custom js
-        script(type="text/javascript", src='/js/slider.js')
         script(type="text/javascript", src='/js/main.js')
         script(type="text/javascript", src='/js/pageSearch.js')
+        script(type="text/javascript", src='/js/cd-rotate.js')
+        script(type="text/javascript", src='/js/moreinfo.js')
+        script(type="text/javascript", src='/js/agenda.js')
 
     body
+
+        #loader-wrapper
+            #loader
+            .loader-section.section-left
+            .loader-section.section-right
 
         block content
 

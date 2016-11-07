@@ -1,0 +1,74 @@
+extends ../../layouts/admin_layout
+
+block specific_stylesheets
+    link(rel='stylesheet', href='/css/admin.css')
+    style.
+        .card{
+            margin: 10px;
+            padding: 0px;
+            max-width: 250px;
+            -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=5, Direction=45, Color=#000000)"; /*IE 8*/
+            -moz-box-shadow: -2px 2px 5px 2px rgba(0, 0, 0, 0.4); /*FF 3.5+*/
+            -webkit-box-shadow: -2px 2px 5px 2px rgba(0, 0, 0, 0.4); /*Saf3-4, Chrome, iOS 4.0.2-4.2, Android 2.3+*/
+            box-shadow: -2px 2px 5px 2px rgba(0, 0, 0, 0.4); /* FF3.5+, Opera 9+, Saf1+, Chrome, IE10 */
+            filter: progid:DXImageTransform.Microsoft.Shadow(Strength=5, Direction=135, Color=#000000); /*IE 5.5-7*/
+            -webkit-border-radius: 4px 4px 0 0; /*Safari, Chrome*/
+            -moz-border-radius: 4px 4px 0 0; /*Firefox*/
+            border-radius: 4px 4px 0 0;
+        }
+        .card img{
+            min-width: 250px;
+            max-height: 250px;
+            -webkit-border-radius: 4px 4px 0 0; /*Safari, Chrome*/
+            -moz-border-radius: 4px 4px 0 0; /*Firefox*/
+            border-radius: 4px 4px 0 0;
+        }
+        .card-title {
+            padding: 15px;
+            background: #e4e4e4;
+            margin: 0;
+            width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .prt-delete{
+            font-size: 18px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+block content
+    include ../../static/_admin_header
+    #wrapper
+        include ../../static/_sidebar
+        #page-content-wrapper
+            .alert-control(style='display: none;')
+                .alert
+                    a.close(href="#",data-dismiss="alert",aria-label="close") &times;
+                    strong
+            .row
+                .col-xs-12
+                    .box.box-primary
+                        .box-header.with-border
+                            h3.box-title Speakers list
+                        .box-body
+                            .row
+                                .col-xs-12
+                                    if speakers.length
+                                        each item in speakers
+                                            .col-sm-3.card
+                                                form(action="/control/admin/speaker/delete", method="post",style="display: inline;")
+                                                    input(type="hidden",value=item._id,name="id")
+                                                    input(type="hidden",value=item.avatar,name="image_id")
+                                                    button.btn.prt-delete.btn-xs.btn-danger(type="submit",onclick="return confirm('Are you sure?')",title="Delete")
+                                                        i.fa.fa-trash-o
+                                                img.card-img-top(src='/images/'+item.avatar, alt=item.name)
+                                                h4.card-title= item.name
+                                                h4.card-title= item.position
+                                                h4.card-title= item.company
+                                                h4.card-title= item.country
+                                    else
+                                        .col-sm-3.card
+                                            img.card-img-top(src='http://www.dancesportireland.org/images/images/whoswho.png', alt="no speakers")
+                                            h4.card-title Nothing to show
