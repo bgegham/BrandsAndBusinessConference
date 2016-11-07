@@ -306,6 +306,9 @@ Main Components
     .cd-horizontal-timeline .events-content p {
         font-size: 1.8rem;
     }
+    .cd-timeline-navigation a{
+        display: none;
+    }
 }
 
 @-webkit-keyframes cd-enter-right {
@@ -487,13 +490,13 @@ Main Components
     top: 0;
     display: block;
     height: 100%;
-    -webkit-transition: all 0.1s ease-in-out;
-    -moz-transition: all 0.1s ease-in-out;
-    transition: all 0.1s ease-in-out;
+    -webkit-transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
     border-left: 3px solid #1288df;
 }
 .break-agenda{
-    background: #1288df;
+    background: #333333;
 }
 .break-agenda .cilabs-schedule-day, .break-agenda .cilabs-schedule-time,
 .break-agenda .cilabs-schedule-speaker-name,.break-agenda .cilabs-schedule-title,

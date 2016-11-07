@@ -5,6 +5,17 @@ jQuery(document).ready(function($){
     var timelines = $('.cd-horizontal-timeline'),
         eventsMinDistance = 130;
 
+        if($(document).width() > 768){
+            eventsMinDistance = 120;
+        } else{
+            eventsMinDistance = 40;
+        }
+        if($(document).width() > 1000){
+            eventsMinDistance = 140;
+        }
+
+
+
     (timelines.length > 0) && initTimeline(timelines);
 
     function initTimeline(timelines) {

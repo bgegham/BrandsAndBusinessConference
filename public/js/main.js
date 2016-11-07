@@ -1,7 +1,17 @@
 $(document).ready(function(){
+
     setTimeout(function(){
+        $.get("http://ip-api.com/json", function(response) {
+            if(response.country == "Armenia") {
+                $('#monthly-2').click();
+                $('.armAg').click();
+            }else {
+                $('#yearly-2').click();
+            }
+        }, "jsonp");
         $('body').addClass('ready-load');
     },500);
+
     $('.agenda-control').on('click', function () {
         $($(this).data('target')).collapse('toggle');
     });
