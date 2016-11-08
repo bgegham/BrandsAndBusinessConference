@@ -30,7 +30,7 @@ block content
                                         //        p.text-error= errors.errors.place
                                         .form-group
                                             label Label
-                                            input.form-control(placeholder="Write place",type="text",name="label",required=true, value=(agenda && agenda.place) ? agenda.place : '')
+                                            input.form-control(placeholder="Write place",type="text",name="label",required=true, value=(agenda && agenda.label) ? agenda.label : '')
                                             if errors && errors.errors.label
                                                 p.text-error= errors.errors.label
                                         .form-group
@@ -45,7 +45,7 @@ block content
                                                 p.text-error= errors.errors.date_sm
                                         .form-group
                                             label Description
-                                            textarea.form-control(rows="5",placeholder="Write description...",type="text",name="description",required=true)=(agenda && agenda.description) ? agenda.description : ''
+                                            textarea.form-control(rows="5",placeholder="Write description...",type="text",name="description")=(agenda && agenda.description) ? agenda.description : ''
                                             if errors && errors.errors.description
                                                 p.text-error= errors.errors.description
                                     .col-xs-12.col-md-6
@@ -62,10 +62,15 @@ block content
                                             input.form-control(placeholder="Write speaker name/position",type="text",name="speaker9",value=(agenda && agenda.speakers[8]) ? agenda.speakers[8] : '')
                                             input.form-control(placeholder="Write speaker name/position",type="text",name="speaker10",value=(agenda && agenda.speakers[9]) ? agenda.speakers[9] : '')
                                         .form-group
-                                            label Color (FFFFFF)
+                                            label Border color (default:  #1288df   - blue)
                                             input.form-control(placeholder="Color code",type="text",name="color", value=(agenda && agenda.color) ? agenda.color : '')
                                             if errors && errors.errors.color
                                                 p.text-error= errors.errors.color
+                                        .form-group
+                                            label Background color (default:  #ffffff   - white)
+                                            input.form-control(placeholder="Color code",type="text",name="bgcolor", value=(agenda && agenda.bgcolor) ? agenda.bgcolor : '')
+                                            if errors && errors.errors.bgcolor
+                                                p.text-error= errors.errors.bgcolor
                                         .form-group
                                             label Priority in view
                                             input.form-control(placeholder="Priority",type="number",name="priority", value=(agenda && agenda.priority) ? agenda.priority : '')

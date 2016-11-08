@@ -495,9 +495,6 @@ Main Components
     transition: all 0.4s ease-in-out;
     border-left: 3px solid #1288df;
 }
-.break-agenda{
-    background: #333333;
-}
 .break-agenda .cilabs-schedule-day, .break-agenda .cilabs-schedule-time,
 .break-agenda .cilabs-schedule-speaker-name,.break-agenda .cilabs-schedule-title,
 .break-agenda .cilabs-schedule-descr{

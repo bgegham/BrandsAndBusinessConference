@@ -30,7 +30,11 @@ var agendaSchema = new Schema({
     },
     color : {
         type: String,
-        default : "333"
+        default : "1288df"
+    },
+    bgcolor : {
+        type: String,
+        default : "fff"
     },
     speakers: [],
     priority : {
