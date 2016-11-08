@@ -671,8 +671,8 @@ AdminPanelController.prototype.get_agenda     = function (request, response) {
                     response.end();
                 } else {
 
-
                     Agenda.find({date:"26/11/2016"})
+                        .sort({"priority" : 1})
                         .exec(function (err, _agenda26) {
                             if(err){
                                 response.redirect('/control/admin/agenda');

@@ -10,7 +10,7 @@ html(xmlns='http://www.w3.org/1999/xhtml')
             | TIME email
         style(type='text/css').
             /* RESET STYLES */
-            html { background-color:#E1E1E1; margin:0; padding:0; }
+            html { background-color:#f9f8f8; margin:0; padding:0; }
             body, #bodyTable, #bodyCell, #bodyCell{height:100% !important; margin:0; padding:0; width:100% !important;font-family:Helvetica, Arial, "Lucida Grande", sans-serif;}
             table{border-collapse:collapse;}
             table[id=bodyTable] {width:100%!important;margin:auto;max-width:600px!important;color:#7A7A7A;font-weight:normal;}
@@ -34,10 +34,10 @@ html(xmlns='http://www.w3.org/1999/xhtml')
             .flexibleImage{height:auto;}
             .linkRemoveBorder{border-bottom:0 !important;}
             table[class=flexibleContainerCellDivider] {padding-bottom:0 !important;padding-top:0 !important;}
-            body, #bodyTable{background-color:#E1E1E1;}
-            #emailHeader{background-color:#E1E1E1;}
+            body, #bodyTable{background-color:#f9f8f8;}
+            #emailHeader{background-color:#f9f8f8;}
             #emailBody{background-color:#FFFFFF;}
-            #emailFooter{background-color:#E1E1E1;}
+            #emailFooter{background-color:#f9f8f8;}
             .nestedContainer{background-color:#F8F8F8; border:1px solid #CCCCCC;}
             .emailButton{background-color: #1288df; border-collapse:separate;}
             .buttonContent{color:#FFFFFF; font-family:Helvetica; font-size:18px; font-weight:bold; line-height:100%; padding:15px; text-align:center;}
@@ -68,7 +68,7 @@ html(xmlns='http://www.w3.org/1999/xhtml')
                 from rendering media query styles on
                 desktop.
                 */
-                /*td[class="textContent"], td[class="flexibleContainerCell"] { width: 100%; padding-left: 10px !important; padding-right: 10px !important; }*/
+                td[class="textContent"], td[class="flexibleContainerCell"] { width: 100%; padding-left: 10px !important; padding-right: 10px !important; }
                 table[id="emailHeader"],
                 table[id="emailBody"],
                 table[id="emailFooter"],
@@ -117,6 +117,17 @@ html(xmlns='http://www.w3.org/1999/xhtml')
             =====================================================*/
             @media only screen and (min-device-width : 320px) and (max-device-width:568px) {
             }
+
+            table tr td {
+                padding: 10px !important;
+                color: #000;
+            }
+
+            table tr td:first-child {
+                width: 40%;
+                color: #1288df;
+                font-weight: 600;
+            }
             /* end IOS targeting */
         //
           Outlook Conditional CSS
@@ -131,7 +142,8 @@ html(xmlns='http://www.w3.org/1999/xhtml')
         //if mso 14
           style(type='text/css').
             .flexibleContainer{display:block !important; width:100% !important;}
-    body(bgcolor='#E1E1E1', leftmargin='0', marginwidth='0', topmargin='0', marginheight='0', offset='0')
+
+    body(bgcolor='#f9f8f8', leftmargin='0', marginwidth='0', topmargin='0', marginheight='0', offset='0')
         // CENTER THE EMAIL //
         //
           1.  The center tag should normally put all the
@@ -141,7 +153,7 @@ html(xmlns='http://www.w3.org/1999/xhtml')
           2.  For hotmail and yahoomail, the contents of
           the email starts from this center, so we try to
           apply necessary styling e.g. background-color.
-        center(style='background-color:#E1E1E1;')
+        center(style='background-color:#f9f8f8;')
             table#bodyTable(border='0', cellpadding='0', cellspacing='0', height='100%', width='100%', style='table-layout: fixed;max-width:100% !important;width: 100% !important;min-width: 100% !important;')
                 tr
                     td#bodyCell(align='center', valign='top')
@@ -150,23 +162,22 @@ html(xmlns='http://www.w3.org/1999/xhtml')
                           The table "emailBody" is the email's container.
                           Its width can be set to 100% for a color band
                           that spans the width of the page.
-                        table#emailHeader(bgcolor='#E1E1E1', border='0', cellpadding='0', cellspacing='0', width='600')
+                        table#emailHeader(bgcolor='#f9f8f8', border='0', cellpadding='0', cellspacing='0', width='600')
                             // HEADER ROW //
                             tr
                                 td(align='center', valign='top')
-                                p NEW SUBSCRIBER
                                     // CENTERING TABLE //
                                     table(border='0', cellpadding='0', cellspacing='0', width='100%')
                                         tr
                                             td(align='center', valign='top')
                                                 // FLEXIBLE CONTAINER //
+                                                h2(style="margin-left: 10px;color: #1288df") Subscribe new email
                                                 table.flexibleContainer(border='0', cellpadding='10', cellspacing='0', width='600')
                                                     tr
                                                         td.flexibleContainerCell(valign='top', width='600')
                                                             // CONTENT TABLE //
                                                             table(align='left', border='1', cellpadding='0', cellspacing='0', width='100%')
                                                                 tr
-                                                                    td.textContent(align='left') EMAIL:
+                                                                    td.textContent(align='left') E-mail
                                                                     td.textContent(align='left') #{ _email_ }
-
 

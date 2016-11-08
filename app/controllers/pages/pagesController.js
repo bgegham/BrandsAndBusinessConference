@@ -41,9 +41,13 @@ PagesController.prototype.mainPage      =  function (request, response) {
                                 }
                             }).then(function (_speakers) {
 
-                            Agenda.find({date:"24/11/2016"}).exec(function (err, _agenda24) {
+                            Agenda.find({date:"24/11/2016"})
+                                .sort({"priority" : 1})
+                                .exec(function (err, _agenda24) {
 
-                                Agenda.find({date:"26/11/2016"}).exec(function (err, _agenda26) {
+                                Agenda.find({date:"26/11/2016"})
+                                    .sort({"priority" : 1})
+                                    .exec(function (err, _agenda26) {
 
 
                                     About.find({}).exec(function (err, _about) {
