@@ -2,6 +2,17 @@ extends ../../layouts/admin_layout
 
 block specific_stylesheets
     link(rel='stylesheet', href='/css/admin.css')
+    link(rel='stylesheet', href='/css/agenda.css')
+    style.
+        .btn{
+            position: absolute;
+            top:0;
+            left: 0;
+            z-index: 20;
+        }
+        .btn-info{
+            left:25px;
+        }
 
 block content
     include ../../static/_admin_header
@@ -12,52 +23,78 @@ block content
                 .alert
                     a.close(href="#",data-dismiss="alert",aria-label="close") &times;
                     strong
+            .row
+                .col-xs-12
+                    h3.box-title Agenda preview
+                    .clearfix
+                    .tabbable-panel
+                        .tabbable-line
+                            ul.nav.nav-tabs
+                                li.active
+                                    a(href="#tab_a",data-toggle="tab") 24/11/2016
+                                li
+                                    a(href="#tab_b",data-toggle="tab") 26/11/2016
+                            .tab-content(style='display:table;width: 100%;')
+                                .tab-pane.active( id="tab_a" )
+                                    br
+                                    .col-xs-12(style="max-width: 800px")
+                                        if _agenda24
+                                            each item in _agenda24
+                                                .row.agenda-control
+                                                    form(action="/control/admin/agenda/delete", method="post",style="display: inline;")
+                                                        input(type="hidden",value=item._id,name="id")
+                                                        button.btn.prt-delete.btn-xs.btn-danger(type="submit",onclick="return confirm('Are you sure?')",title="Delete")
+                                                            i.fa.fa-trash-o
+                                                    a.btn.prt-delete.btn-xs.btn-info(href="/control/admin/agenda/edit/"+item._id,title="Edit")
+                                                        i.fa.fa-edit
+                                                    .bordered-left(style="border-left-color:#"+item.color)
+                                                    .col-xs-12.col-md-4.date-schedule
+                                                        span.cilabs-schedule-day.text-nowrap= item.time
+                                                        span.cilabs-schedule-time= item.date_sm
+                                                        span Priority: #{item.priority}
+                                                        span.mob.stage-btn.Night.Summit
+                                                    .col-xs-12.col-md-8
+                                                        .cilabs-schedule-title.clearfix= item.label
+                                                        if item.speakers.length
+                                                            div
+                                                                .cilabs-schedule-descr.col-xs-12= item.description
+                                                                .row
+                                                                    .col-xs-12
+                                                                        each sp in item.speakers
+                                                                            if sp!= ""
+                                                                                span.cilabs-schedule-speaker-name= sp
+                                                br
+                                                .clearfix
+
+                                .tab-pane( id="tab_b" )
+                                    br
+                                    .col-xs-12(style="max-width: 800px")
+                                        if _agenda26
+                                            each item in _agenda26
+                                                .row.agenda-control
+                                                    form(action="/control/admin/agenda/delete", method="post",style="display: inline;")
+                                                        input(type="hidden",value=item._id,name="id")
+                                                        button.btn.prt-delete.btn-xs.btn-danger(type="submit",onclick="return confirm('Are you sure?')",title="Delete")
+                                                            i.fa.fa-trash-o
+                                                    a.btn.prt-delete.btn-xs.btn-info(href="/control/admin/agenda/edit/" + item._id,title="Edit")
+                                                        i.fa.fa-edit
+                                                    .bordered-left(style="border-left-color:#" + item.color)
+                                                    .col-xs-12.col-md-4.date-schedule
+                                                        span.cilabs-schedule-day.text-nowrap= item.time
+                                                        span.cilabs-schedule-time= item.date_sm
+                                                        span Priority: #{item.priority}
+                                                        span.mob.stage-btn.Night.Summit
+                                                    .col-xs-12.col-md-8
+                                                        .cilabs-schedule-title.clearfix= item.label
+                                                        if item.speakers.length
+                                                            div
+                                                                .cilabs-schedule-descr.col-xs-12= item.description
+                                                                .row
+                                                                    .col-xs-12
+                                                                        each sp in item.speakers
+                                                                            if sp != ""
+                                                                                span.cilabs-schedule-speaker-name= sp
+                                                br
+                                                .clearfix
 
 
-        .row
-        //    .col-xs-12
-        //        h2.adm-page-name Armenia history content
-        //        .alert-control(style='display: none;')
-        //            .alert.alert-success
-        //                a.close(href="#",data-dismiss="alert",aria-label="close") &times;
-        //                strong Success!
-        //                    | Successful updated
-        //    .col-xs-12
-        //    .tabbable-panel
-        //        .tabbable-line
-        //            ul.nav.nav-tabs
-        //                li.active
-        //                    a(href="#tab_his_eng",data-toggle="tab") ENG
-        //                li
-        //                    a(href="#tab_his_arm",data-toggle="tab") ARM
-        //            .tab-content(style='display:table;width: 100%;')
-        //                .tab-pane.active( id="tab_his_eng" )
-        //                    form(action='/admin/history/armenia', method='post')
-        //                        .col-xs-12(style="margin-bottom:25px")
-        //                            button(type="submit").btn.btn-success.pull-right SAVE
-        //                            a(href="/admin/history/armenia").btn.btn-info.pull-right(style="margin-right: 15px") RESET
-        //                        .col-xs-12(style="padding:0")
-        //                            .tabbable-panel
-        //                                input(type="hidden",name="lang",value="eng")
-        //                                textarea(name="arm_his",id="arm_his_eng",rows="50",cols="100")= content.eng
-        //                .tab-pane( id="tab_his_arm" )
-        //                    form(action='/admin/history/armenia', method='post')
-        //                        .col-xs-12(style="margin-bottom:25px")
-        //                            button(type="submit").btn.btn-success.pull-right SAVE
-        //                            a(href="/admin/history/armenia").btn.btn-info.pull-right(style="margin-right: 15px") RESET
-        //                        .col-xs-12(style="padding:0")
-        //                            .tabbable-panel
-        //                                input(type="hidden",name="lang",value="arm")
-        //                                textarea(name="arm_his",id="arm_his_arm",rows="50",cols="100")= content.arm
-        //script.
-        //    $(document).ready(function(){
-        //        CKEDITOR.replace('arm_his_eng', {
-        //            height: '500px'
-        //        });
-        //        CKEDITOR.replace('arm_his_arm', {
-        //            height: '500px'
-        //        });
-        //    });
-
-block specific_scripts
-    //script(type="text/javascript", src='//cdn.ckeditor.com/4.5.7/full/ckeditor.js')

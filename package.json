@@ -17,6 +17,7 @@
     "email-templates": "~2.0.1",
     "express": "~4.13.1",
     "express-session": "^1.13.0",
+    "sendgrid": "^4.0.1",
     "express-validator": "^2.20.2",
     "gridfs-stream": "~1.1.1",
     "intel": "^1.1.0",

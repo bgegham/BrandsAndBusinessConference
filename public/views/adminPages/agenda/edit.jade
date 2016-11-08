@@ -16,16 +16,13 @@ block content
                 .col-xs-12
                     .box.box-primary
                         .box-header.with-border
-                            h3.box-title Create partner
-                        form(method="post",role='form', action="/control/admin/agenda/add")
+                            h3.box-title Edit agenda
+                        form(method="post",role='form', action="/control/admin/agenda/edit/#{agenda._id}")
                             .box-body
                                 .row
                                     .col-xs-12.col-md-6
                                         .form-group
-                                            label Date
-                                            select.form-control(name="date")
-                                                option(value="24/11/2016") 24/11/2016
-                                                option(value="26/11/2016") 26/11/2016
+                                            label Date: #{agenda.date}
                                         //.form-group
                                         //    label Place
                                         //    input.form-control(placeholder="Write place",type="text",name="place",required=true, value=(agenda && agenda.place) ? agenda.place : '')
@@ -48,22 +45,22 @@ block content
                                                 p.text-error= errors.errors.date_sm
                                         .form-group
                                             label Description
-                                            textarea.form-control(rows="5",placeholder="Write description...",type="text",name="description", value=(agenda && agenda.description) ? agenda.description : '')
+                                            textarea.form-control(rows="5",placeholder="Write description...",type="text",name="description",required=true)=(agenda && agenda.description) ? agenda.description : ''
                                             if errors && errors.errors.description
                                                 p.text-error= errors.errors.description
                                     .col-xs-12.col-md-6
                                         .form-group
                                             label Speakers
-                                            input.form-control(placeholder="Write speaker name/position",type="text",name="speaker1")
-                                            input.form-control(placeholder="Write speaker name/position",type="text",name="speaker2")
-                                            input.form-control(placeholder="Write speaker name/position",type="text",name="speaker3")
-                                            input.form-control(placeholder="Write speaker name/position",type="text",name="speaker4")
-                                            input.form-control(placeholder="Write speaker name/position",type="text",name="speaker5")
-                                            input.form-control(placeholder="Write speaker name/position",type="text",name="speaker6")
-                                            input.form-control(placeholder="Write speaker name/position",type="text",name="speaker7")
-                                            input.form-control(placeholder="Write speaker name/position",type="text",name="speaker8")
-                                            input.form-control(placeholder="Write speaker name/position",type="text",name="speaker9")
-                                            input.form-control(placeholder="Write speaker name/position",type="text",name="speaker10")
+                                            input.form-control(placeholder="Write speaker name/position",type="text",name="speaker1",value=(agenda && agenda.speakers[0]) ? agenda.speakers[0] : '')
+                                            input.form-control(placeholder="Write speaker name/position",type="text",name="speaker2",value=(agenda && agenda.speakers[1]) ? agenda.speakers[1] : '')
+                                            input.form-control(placeholder="Write speaker name/position",type="text",name="speaker3",value=(agenda && agenda.speakers[2]) ? agenda.speakers[2] : '')
+                                            input.form-control(placeholder="Write speaker name/position",type="text",name="speaker4",value=(agenda && agenda.speakers[3]) ? agenda.speakers[3] : '')
+                                            input.form-control(placeholder="Write speaker name/position",type="text",name="speaker5",value=(agenda && agenda.speakers[4]) ? agenda.speakers[4] : '')
+                                            input.form-control(placeholder="Write speaker name/position",type="text",name="speaker6",value=(agenda && agenda.speakers[5]) ? agenda.speakers[5] : '')
+                                            input.form-control(placeholder="Write speaker name/position",type="text",name="speaker7",value=(agenda && agenda.speakers[6]) ? agenda.speakers[6] : '')
+                                            input.form-control(placeholder="Write speaker name/position",type="text",name="speaker8",value=(agenda && agenda.speakers[7]) ? agenda.speakers[7] : '')
+                                            input.form-control(placeholder="Write speaker name/position",type="text",name="speaker9",value=(agenda && agenda.speakers[8]) ? agenda.speakers[8] : '')
+                                            input.form-control(placeholder="Write speaker name/position",type="text",name="speaker10",value=(agenda && agenda.speakers[9]) ? agenda.speakers[9] : '')
                                         .form-group
                                             label Color (FFFFFF)
                                             input.form-control(placeholder="Color code",type="text",name="color", value=(agenda && agenda.color) ? agenda.color : '')
@@ -76,4 +73,4 @@ block content
                                                 p.text-error= errors.errors.priority
                             .box-footer.text-right
                                 button.btn.btn3d.btn-default(type='reset', style="margin-right:15px;") Reset
-                                button.btn.btn3d.btn-success(type='submit') Create
+                                button.btn.btn3d.btn-success(type='submit') Update

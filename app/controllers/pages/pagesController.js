@@ -4,14 +4,14 @@ var config                  = require('../../../config')[APP_ENV],
     path                    = require('path'),
     async                   = require("async"),
     fs                      = require('fs'),
-
+    moment                  = require('moment'),
     User                    = require('../../models/User'),
     Agenda                  = require('../../models/Agenda'),
     Partner                 = require('../../models/Partner'),
     Speaker                 = require('../../models/Speaker'),
     About                   = require('../../models/About'),
     Slider                  = require('../../models/Slider'),
-
+    emailHelper             = require('sendgrid').mail,
     ObjectId                = require('mongodb').ObjectID;
 
 
@@ -41,13 +41,18 @@ PagesController.prototype.mainPage      =  function (request, response) {
                                 }
                             }).then(function (_speakers) {
 
-                                response.render( path.resolve('public/views/pages/main/index.jade'), {
-                                    title           : "Brands & Business: brands business conference",
-                                    _sliderData     : _slider,
-                                    _partnerData    : _partner,
-                                    _speakersData   : _speakers
+                                About.find({}).exec(function (err, _about) {
+                                    response.render( path.resolve('public/views/pages/main/index.jade'), {
+                                        title           : "Brands & Business: brands business conference 2016",
+                                        _sliderData     : _slider,
+                                        _partnerData    : _partner,
+                                        _speakersData   : _speakers,
+                                        _about          : _about[0]
+                                    });
+                                    response.end();
                                 });
-                                response.end();
+
+
                         });
                     });
         });
@@ -56,51 +61,204 @@ PagesController.prototype.mainPage      =  function (request, response) {
 
 PagesController.prototype.contactUs = function(request, response) {
 
-    var fullName     = request.body.fullName;
-    var email        = request.body.email;
+    var firstName               = request.body.firstName;
+    var lastName                = request.body.lastName;
+    var phoneNumber             = request.body.phoneNumber;
+    var gender                  = request.body.gender;
+    var birthDate               = request.body.birthDate;
+    var position                = request.body.position;
+    var position_description    = request.body.position_description;
+    var email                   = request.body.email;
+    var ticket                  = request.body.ticket;
 
 
-    var errors              = {};
-    errors.errorFullName    = false;
-    errors.errorEmail       = false;
+    var errors                     = {};
+    errors.firstName               = false;
+    errors.lastName                = false;
+    errors.phone                   = false;
+    errors.gender                  = false;
+    errors.birthDate               = false;
+    errors._posCheck               = false;
+    errors.position_description    = false;
+    errors._email                   = false;
+    errors.ticket                  = false;
 
     function validatorEmail(value) {
         return /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(value);
     }
 
     if(validatorEmail(email)){
-        errors.errorEmail = false;
+        errors._email = false;
 
     } else {
-        errors.errorEmail = "Is not valid email address.";
+        errors._email = "Is not valid email address.";
     }
-    if(fullName){
-        errors.errorFullName = false;
+    if(firstName){
+        errors.firstName = false;
 
     } else {
-        errors.errorFullName = " Full name is required.";
+        errors.firstName = "First name is required.";
+    }
+    if(lastName){
+        errors.lastName = false;
+
+    } else {
+        errors.lastName = "Last name is required.";
+    }
+    if(phoneNumber){
+        errors.phone = false;
+
+    } else {
+        errors.phone = "Phone number is required.";
+    }
+    if(!gender){
+        gender = "Male";
+    }
+    if(position){
+        errors._posCheck = false;
+
+    } else {
+        errors._posCheck = "Position is required.";
+    }
+    if(position_description){
+        errors._customPosText = false;
+
+    } else {
+        errors._customPosText = "Position information is required.";
+    }
+    if(gender){
+        errors.gender = false;
+
+    } else {
+        errors.gender = "Gender information is required.";
+    }
+    if(birthDate){
+        if(moment(birthDate,'DD.MM.YYYY').isValid()){
+            errors.birthDate = false;
+        } else{
+            errors.birthDate = "Birth date is not valid date.";
+        }
+    } else {
+        errors.birthDate = "Birth date is required.";
     }
 
-    if(errors.errorEmail || errors.errorFullName ) {
-        ResponseUtils.badRequest(response, {"name": errors.errorFullName, "email": errors.errorEmail});
+
+    if(errors._email || errors.firstName || errors.lastName || errors.phone || errors._posCheck || errors._customPosText || errors.gender || errors.birthDate) {
+        ResponseUtils.badRequest(response, errors);
     } else {
         var _user = new User();
-            _user.name  = fullName;
-            _user.email = email;
+            _user.firstName     = firstName;
+            _user.lastName      = lastName;
+            _user.birthDate     = birthDate;
+            _user.phoneNumber   = phoneNumber;
+            _user.gender        = gender;
+            _user.position      = position;
+            _user.position_description = position_description;
+            _user.email         = email;
+            _user.ticket        = ticket;
 
         _user.save(function (err, newUser) {
             if(err){
                 console.log("Save subscriber error",err);
-                ResponseUtils.badRequest(response, {"name": errors.errorFullName, "email": errors.errorEmail});
+                ResponseUtils.badRequest(response, err.errors);
             }
         }).then(function (newUser) {
             ResponseUtils.send(response, { status: 'success' });
+
+            //sending process
+            response.render(path.resolve(global.ROOT_DIR+'public/views/email_templates/default.jade'), {
+                firstName           : firstName,
+                lastName            : lastName,
+                phoneNumber         : phoneNumber,
+                gender              : gender,
+                birthDate           : birthDate,
+                position            : position,
+                position_description: position_description,
+                email               : email,
+                ticket              : ticket
+            }, function(err, html){
+
+                    var from_email  = new emailHelper.Email("purchase@ticket");
+                    var to_email    = new emailHelper.Email("b.gegham@gmail.com");
+                    var subject     = "Purchase ticket";
+                    var content     = new emailHelper.Content('text/html', html);
+                    var mail    = new emailHelper.Mail(from_email, subject, to_email, content);
+                    var sg      = require('sendgrid')(config.SENDGRID_API_KEY);
+                    var request = sg.emptyRequest({
+                        method: 'POST',
+                        path: '/v3/mail/send',
+                        body: mail.toJSON()
+                    });
+
+                    sg.API(request, function(error, responseEmail) {
+                        if(error){
+                            console.log("error", error);
+                        } else {
+                            console.log("send email ------")
+                        }
+
+                    });
+            });
+
+            //sending process end
         });
 
     }
 
 
 
+
+};
+
+PagesController.prototype.subscribeUser = function (request, response) {
+    var email                   = request.body.email;
+    var _error_                 = false;
+    function validatorEmail(value) {
+        return /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(value);
+    }
+
+    if(validatorEmail(email)){
+        _error_ = false;
+
+    } else {
+        _error_ = "Is not valid email address.";
+    }
+
+    if(_error_) {
+        ResponseUtils.badRequest(response, _error_);
+    } else {
+
+            ResponseUtils.send(response, { status: 'success' });
+
+            //sending process
+            response.render(path.resolve(global.ROOT_DIR+'public/views/email_templates/subscribe.jade'), {
+                _email_           : email
+            }, function(err, html){
+
+                var from_email  = new emailHelper.Email("subscribe@user");
+                var to_email    = new emailHelper.Email("b.gegham@gmail.com");
+                var subject     = "NEW SUBSCRIBER";
+                var content     = new emailHelper.Content('text/html', html);
+                var mail    = new emailHelper.Mail(from_email, subject, to_email, content);
+                var sg      = require('sendgrid')(config.SENDGRID_API_KEY);
+                var request = sg.emptyRequest({
+                    method: 'POST',
+                    path: '/v3/mail/send',
+                    body: mail.toJSON()
+                });
+
+                sg.API(request, function(error, responseEmail) {
+                    if(error){
+                        console.log("error", error);
+                    } else {
+                        console.log("send email ------")
+                    }
+
+                });
+            });
+
+            //sending process end
+    }
 
 };
 

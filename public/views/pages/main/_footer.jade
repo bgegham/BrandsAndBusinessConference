@@ -3,7 +3,7 @@ footer#contacts
         .row
             .col-xs-12.col-md-4.text-left
                 h3 Contact:
-                p Have a question or feedback? Contact!
+                p Have a question or feedback? Contact us!
                 p
                     a(title="Contact me!")
                         span   +(374 55) 07-23-37
@@ -15,19 +15,15 @@ footer#contacts
                         i.fa.fa-facebook-square
 
             .col-xs-12.col-md-8.text-left
-                h3 To purchase tickets please submit this form:
-                p Have a question or feedback? Contact!
-                .contact-form
-                    label(for="fullname") Your full name
-                    input.form-control#fullname(type="text", placeholder="Full name")
-                    p.errorFullname
+                h3 Subscribe to out news:
+                p Write your email here and lorem lorem
+                .subscribe-form
+                    label(for="_emailS",style="margin-bottom: 5px;") Your e-mail
+                    input.form-control#_emailS(type="email", placeholder="example@example.com")
+                    p._err._errorEmail
                     .clearfix
-                    label(for="email") Your contact e-mail
-                    input.form-control#email(type="email", placeholder="example@example.com")
-                    p.errorEmail
-                    .clearfix
-                    input#contactUsSubmit( value="SEND" class="btn btn-primary pull-right")
-                .contact-form-success
+                    input#_subscribe( value="SEND" class="btn btn-primary pull-right")
+                .subscribe-form-success
                     h2 Great! lorem lorem lorem
                 .clearfix
 

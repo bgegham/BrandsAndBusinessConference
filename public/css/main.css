@@ -838,3 +838,65 @@ footer#contacts .no-mrg{
     -webkit-transition: all 0.3s 1s ease-out;
     transition: all 0.3s 1s ease-out;
 }
+.modal-header{
+    background: #126fbc;
+    color: #fff;
+    font-size: 24px;
+    font-weight: 300;
+    padding: 30px 15px;
+}
+.form-control {
+    box-shadow: none;
+    border-color: #126fbc;
+}
+.modal-body .form-group {
+    margin-bottom: 15px!important;
+}
+.modal-body {
+    padding: 30px;
+}
+.modal-body .control-label{
+   font-weight: 400;
+    color: #333333;
+}
+.modal-body .btn{
+    padding: 7px 30px;
+    font-size: 18px;
+    font-weight: 300;
+}
+.modal-body .btn-success{
+    background: #126fbc;
+    border-color: #126fbc;
+}
+.radio-control{
+    position: relative;
+    min-height: 27px;
+    padding-left: 20px;
+    padding-top: 6px;
+    cursor: pointer;
+}
+.radio-control input{
+    position: absolute;
+    top: 3px;
+    left: 0;
+}
+.note-modal{
+    font-size: 12px;
+    font-weight: 300;
+    color: #333333;
+}
+.form-ticket-success{
+    display: none;
+}
+.form-ticket-success h2{
+    font-size: 26px;
+    font-weight: 300;
+    margin-bottom: 15px;
+}
+.subscribe-form-success{
+    display: none;
+}
+._err{
+    font-size: 12px;
+    color: red;
+}

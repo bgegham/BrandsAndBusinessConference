@@ -4,8 +4,21 @@ var config              = require('../../config')[APP_ENV],
     uniqueValidator     = require('mongoose-unique-validator');
 
 var aboutSchema = new Schema({
-    text : {
-        type: String
+    text1 : {
+        type: String,
+        default: ""
+    },
+    text2 : {
+        type: String,
+        default: ""
+    },
+    text3 : {
+        type: String,
+        default: ""
+    },
+    text4 : {
+        type: String,
+        default: ""
     },
     created_at: {
         type: Date,

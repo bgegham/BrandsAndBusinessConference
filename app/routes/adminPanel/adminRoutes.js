@@ -48,6 +48,8 @@ module.exports = function(app, multipart) {
     app.get('/control/admin/agenda',              multipart.array(), function(req, res){ adminPanelController.get_agenda(req, res); });
     app.get('/control/admin/agenda/add',          multipart.array(), function(req, res){ adminPanelController.add_agenda(req, res); });
     app.post('/control/admin/agenda/add',         multipart.array(), function(req, res){ adminPanelController.create_agenda(req, res); });
+    app.get('/control/admin/agenda/edit/:id',     multipart.array(), function(req, res){ adminPanelController.edit_agenda(req, res); });
+    app.post('/control/admin/agenda/edit/:id',     multipart.array(), function(req, res){ adminPanelController.update_agenda(req, res); });
     app.post('/control/admin/agenda/delete',      multipart.array(), function(req, res){ adminPanelController.delete_agenda(req, res); });
 
 

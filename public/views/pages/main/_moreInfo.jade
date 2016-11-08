@@ -1,6 +1,76 @@
-.cd-modal
-    .cd-modal-content
-        p Brands &amp; Business is a conference for professionals and companies that covers present challenges, opportunities and technologies in branding. In its second year, the conference aims to become one of the biggest and most significant events in the region. This year we are planning to bring together around 60 specialists and 600 participants in Yerevan and Tbilisi.
-a.cd-modal-close(href='#0') Close
+#myModal.modal.fade(role='dialog')
+    .modal-dialog
+        .modal-content
+            .modal-header
+                button.close(type='button', data-dismiss='modal')
+                    i.fa.fa-times
+                h4.modal-title To purchase tickets please submit this form
+            .modal-body
+                br
+                .form-ticket-success
+                    h2 Great! lorem lorem lorem
+                .form-horizontal.form-ticket(role='form')
+                    p.text.sm All fields in this form are required for submission.
+                    br
+                    .form-group
+                        label.col-sm-3.control-label(for='firstName') First name
+                        .col-sm-9
+                            input#firstName.form-control(type='text', placeholder='First name',required=true)
+                            p._err.firstName
+                    .form-group
+                        label.col-sm-3.control-label(for='lastName') Last name
+                        .col-sm-9
+                            input#lastName.form-control(type='text', placeholder='Last name',required=true)
+                            p._err.lastName
+                    .form-group
+                        label.col-sm-3.control-label(for='dateBirth') Date of birth
+                        .col-sm-9
+                            input#dateBirth.form-control(type='text', placeholder='dd.mm.yyyy',required=true)
+                            p._err.dateBirth
+                    .form-group
+                        label.col-sm-3.control-label(for='_email') Email
+                        .col-sm-9
+                            input#_email.form-control(type='email', placeholder='example@example.com',required=true)
+                            p._err._email
+                    .form-group
+                        label.col-sm-3.control-label(for='phone') Phone number
+                        .col-sm-9
+                            input#phone.form-control(type='text', placeholder='+(XXX XX) XX-XX-XX',required=true)
+                            p._err.phone
+                    .form-group
+                        label.col-sm-3.control-label Gender
+                        .col-sm-9
+                            label.radio-control(style="margin-right: 25px;")
+                                input.gender-input(type="radio", name="gender", value="Male", checked=true)
+                                span    Male
+                            label.radio-control
+                                input.gender-input(type="radio", name="gender", value="Female")
+                                span    Female
+                    .form-group
+                        label.col-sm-3.control-label Position information
+                        .col-sm-9
+                            select#_posCheck.form-control(name="_posCheck", required=true)
+                                option(selected, disabled, hidden) Select position information
+                                option(value="employee") Employee
+                                option(value="student") Student
+                                option(value="other") Other
+                            p._err._posCheck
+                    .form-group
+                        .col-sm-3
+                        .col-sm-9
+                            input.form-control#_customPosText(name="_customPosText", placeholder="Write position information", required=true , style="display:none")
+                            p._err._customPosText
+                    div
+                        p.note-modal Note for all participants*
+                        p.note-modal Please, while purchasing your ticket bring your passport or ID card
+                        p.note-modal Additional note for students*
+                        p.note-modal Please, besides passport or ID card, bring your student card
 
+
+
+                    br
+                    .form-group
+                        .col-sm-offset-2.col-sm-10
+                            button.btn.btn-success.pull-right#byTicketFormSubmit(style="margin-left:15px") Send
+                            button.btn.btn-default.pull-right(data-dismiss='modal') Close
 

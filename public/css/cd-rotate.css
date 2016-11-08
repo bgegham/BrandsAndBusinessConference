@@ -551,6 +551,16 @@
         color: white;
         font-weight: 600;
     }
+    .no-touch .cd-selectf:active {
+        background: #126fbc;
+        color: white;
+        font-weight: 600;
+    }
+    .no-touch .cd-selectf:focus {
+        background: #126fbc;
+        color: white;
+        font-weight: 600;
+    }
     .cd-popular .cd-selectf {
         background: #1288df;
     }

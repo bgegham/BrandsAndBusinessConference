@@ -18,35 +18,22 @@ block content
                         .box-header.with-border
                             h3.box-title About block content
                         form(method="post",role='form', action="/control/admin/about")
+                            input(type="hidden", value=oldVal._id,name="_id")
                             .box-body
                                 .form-group
-                                    label(for='about') New content
-                                    textarea#about.form-control(name="about",rows="4", placeholder='about text', required=true)= (oldVal && oldVal.about) ? oldVal.about : ''
-                                    if errors && errors.about
-                                        p.text-error= errors.about
+                                    label(for='about1') Paragraph 1
+                                    textarea#about1.form-control(name="text1",rows="4", placeholder='about text paragraph 1')= (oldVal && oldVal.text1) ? oldVal.text1 : ''
+                                .form-group
+                                    label(for='about2') Paragraph 1
+                                    textarea#about2.form-control(name="text2",rows="1", placeholder='about text paragraph 2')= (oldVal && oldVal.text2) ? oldVal.text2 : ''
+                                .form-group
+                                    label(for='about3') Paragraph 3
+                                    textarea#about3.form-control(name="text3",rows="1", placeholder='about text paragraph 3')= (oldVal && oldVal.text3) ? oldVal.text3 : ''
+                                .form-group
+                                    label(for='about4') Paragraph 4
+                                    textarea#about4.form-control(name="text4",rows="2", placeholder='about text paragraph 4')= (oldVal && oldVal.text4) ? oldVal.text4 : ''
                             .box-footer.text-right
                                 button.btn.btn3d.btn-default(type='reset', style="margin-right:15px;") Reset
-                                button.btn.btn3d.btn-success(type='submit') Create
-            hr
-            .row
-                .col-xs-12
-                    .box.box-primary
-                        .box-header.with-border
-                            h3.box-title Submitted content
-                        .box-body
-                            if about.length
-                                table.table
-                                    tbody
-                                        each item in about
-                                            tr
-                                                td(style="padding:0 15px")
-                                                    form(action="/control/admin/about/delete", method="post",style="display: inline;")
-                                                        input(type="hidden",value=item._id,name="id")
-                                                        button.btn.btn-xs.btn-danger(type="submit",onclick="return confirm('Are you sure?')")
-                                                            i.fa.fa-trash-o
-                                                td
-                                                    p= item.text
-                            else
-                                p Nothing to show
+                                button.btn.btn3d.btn-success(type='submit') Update
 
 

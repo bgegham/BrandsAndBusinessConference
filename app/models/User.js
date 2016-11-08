@@ -4,19 +4,42 @@ var config              = require('../../config')[APP_ENV],
     uniqueValidator     = require('mongoose-unique-validator');
 
 var userSchema = new Schema({
-    name : {
+    firstName : {
         type: String,
-        index: true
+        index: true,
+        default:""
+    },
+    lastName : {
+        type: String,
+        default:""
+    },
+    birthDate : {
+        type: String,
+        default:""
+    },
+    phoneNumber : {
+        type: String,
+        default:""
+    },
+    gender : {
+        type: String,
+        default:""
+    },
+    position : {
+        type: String,
+        default:""
+    },
+    position_description : {
+        type: String,
+        default:""
     },
     email : {
         type : String,
-        index: true,
-        validate: {
-            validator: function(value) {
-                return /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(value);
-            },
-            message: '{VALUE} is not valid email address.'
-        }
+        default:""
+    },
+    ticket : {
+        type : String,
+        default:""
     },
     created_at: {
         type: Date,

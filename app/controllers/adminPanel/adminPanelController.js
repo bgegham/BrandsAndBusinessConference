@@ -108,7 +108,6 @@ AdminPanelController.prototype.get_about        = function (request, response) {
     if(request.session.admin){
 
         About.find({})
-            .sort({"created_at":-1})
             .exec(function (err, aboutText) {
             if(err){
                 response.redirect('/control/admin/dashboard');
@@ -118,7 +117,7 @@ AdminPanelController.prototype.get_about        = function (request, response) {
                     title               : "Brands & Business: admin about text",
                     active_menu         : "about",
                     username            : request.session.admin.username,
-                    about               : aboutText
+                    oldVal              : aboutText[0]
                 });
                 response.end();
             }
@@ -132,25 +131,31 @@ AdminPanelController.prototype.get_about        = function (request, response) {
 };
 AdminPanelController.prototype.add_about        = function (request, response) {
     if(request.session.admin){
-        var _about            = new About();
-            _about.text       = request.body.about;
 
-        _about.save(function(err) {
-            if (err) {
-                response.render( path.resolve('public/views/adminPages/about/about.jade'), {
-                    title               : "Brands & Business: admin about text",
-                    active_menu         : "about",
-                    username            : request.session.admin.username,
-                    oldVal              : request.body,
-                    errors              : err.errors
-                });
-                response.end();
+        About.findOne({_id : request.body._id}).exec(function (err, updateAbout) {
+            if(err){
+                console.log(request.body._id)
             } else {
-                response.cookie('snm', "About text successfully added!", { maxAge: 900000, httpOnly: false });
-                response.cookie('sns', "true", { maxAge: 900000, httpOnly: false });
-                response.cookie('snc', "alert-success", { maxAge: 900000, httpOnly: false });
-                response.redirect('/control/admin/about');
-                response.end();
+                updateAbout.text1 = request.body.text1;
+                updateAbout.text2 = request.body.text2;
+                updateAbout.text3 = request.body.text3;
+                updateAbout.text4 = request.body.text4;
+
+                updateAbout.save(function (err) {
+                    if(err){
+                        response.cookie('snm', "About text not updated!", { maxAge: 900000, httpOnly: false });
+                        response.cookie('sns', "true", { maxAge: 900000, httpOnly: false });
+                        response.cookie('snc', "alert-danger", { maxAge: 900000, httpOnly: false });
+                        response.redirect('/control/admin/about');
+                        response.end();
+                    } else {
+                        response.cookie('snm', "About text successfully updated!", { maxAge: 900000, httpOnly: false });
+                        response.cookie('sns', "true", { maxAge: 900000, httpOnly: false });
+                        response.cookie('snc', "alert-success", { maxAge: 900000, httpOnly: false });
+                        response.redirect('/control/admin/about');
+                        response.end();
+                    }
+                });
             }
         });
 
@@ -658,19 +663,33 @@ AdminPanelController.prototype.delete_speaker     = function (request, response)
 AdminPanelController.prototype.get_agenda     = function (request, response) {
     if(request.session.admin){
 
-        Agenda.find({})
-            .exec(function (err, _agenda) {
+        Agenda.find({date:"24/11/2016"})
+            .sort({"priority" : 1})
+            .exec(function (err, _agenda24) {
                 if(err){
                     response.redirect('/control/admin/agenda');
                     response.end();
                 } else {
-                    response.render( path.resolve('public/views/adminPages/agenda/agenda.jade'), {
-                        title               : "Brands & Business: admin agenda",
-                        active_menu         : "agenda",
-                        username            : request.session.admin.username,
-                        agenda              : _agenda
-                    });
-                    response.end();
+
+
+                    Agenda.find({date:"26/11/2016"})
+                        .exec(function (err, _agenda26) {
+                            if(err){
+                                response.redirect('/control/admin/agenda');
+                                response.end();
+                            } else {
+
+                                response.render( path.resolve('public/views/adminPages/agenda/agenda.jade'), {
+                                    title               : "Brands & Business: admin agenda",
+                                    active_menu         : "agenda",
+                                    username            : request.session.admin.username,
+                                    _agenda24           : _agenda24,
+                                    _agenda26           : _agenda26
+                                });
+                                response.end();
+                            }
+                        });
+
                 }
             });
 
@@ -697,67 +716,144 @@ AdminPanelController.prototype.add_agenda     = function (request, response) {
         response.end();
     }
 };
+AdminPanelController.prototype.edit_agenda     = function (request, response) {
+    if(request.session.admin){
+
+        Agenda.findOne({_id : request.params.id}).exec(function (err, agenda) {
+            if(agenda){
+                response.render( path.resolve('public/views/adminPages/agenda/edit.jade'), {
+                    title       : "Brands & Business: admin agenda edit",
+                    menu        : "agenda",
+                    username    : request.session.admin.username,
+                    agenda      : agenda,
+                    errors      : false
+                });
+                response.end();
+            } else{
+                console.log(err)
+                response.render( path.resolve('public/views/errors/404.jade'), {
+                    title           : "RICHSTONE: PAGE NOT FOUND"
+                });
+                response.end();
+            }
+        });
+
+    } else {
+        response.redirect('/control/admin/login');
+        response.end();
+    }
+};
 AdminPanelController.prototype.create_agenda     = function (request, response) {
     if(request.session.admin){
 
-        var _speaker            = new Speaker();
-        _speaker.name       = request.body.name;
-        _speaker.position   = request.body.position;
-        _speaker.company    = request.body.company;
-        _speaker.country    = request.body.country;
-        _speaker.priority   = request.body.priority;
+        var _agenda            = new Agenda();
+        _agenda.date       = request.body.date;
+        // _agenda.place   = request.body.place;
+        _agenda.label    = request.body.label;
+        _agenda.time    = request.body.time;
+        _agenda.color    = request.body.color;
+        _agenda.date_sm   = request.body.date_sm;
+        _agenda.description   = request.body.description;
+        _agenda.priority   = request.body.priority;
+
+        _agenda.speakers   = [];
+
+        for(var i=1;i<=10;i++){
+            _agenda.speakers.push(request.body["speaker"+i]);
+        }
 
 
-        if (_speaker.name && request.file) {
+        if (_agenda.date && _agenda.label) {
 
-            var mimeType = request.file.mimetype;
+            _agenda.save(function(err) {
+                if (err) {
 
-            if (mimeType.lastIndexOf('image/') === 0) {
+                    response.cookie('snm', "Agenda not added!", { maxAge: 900000, httpOnly: false });
+                    response.cookie('sns', "true", { maxAge: 900000, httpOnly: false });
+                    response.cookie('snc', "alert-danger", { maxAge: 900000, httpOnly: false });
+                    response.redirect('/control/admin/agenda/add');
+                    response.end();
 
-                var gfs = GRIDFS(CONNECTION.db);
-                var writeStream = gfs.createWriteStream({
-                    filename: request.file.originalname
-                });
-                fs.createReadStream(ROOT_DIR + request.file.path).pipe(writeStream);
+                } else {
+                    response.cookie('snm', "Agenda successfully added!", { maxAge: 900000, httpOnly: false });
+                    response.cookie('sns', "true", { maxAge: 900000, httpOnly: false });
+                    response.cookie('snc', "alert-success", { maxAge: 900000, httpOnly: false });
+                    response.redirect('/control/admin/agenda/add');
+                    response.end();
+                }
+            });
 
-                writeStream.on('close', function (file) {
+            } else {
+                response.cookie('snm', "Agenda not added! wrong params", { maxAge: 900000, httpOnly: false });
+                response.cookie('sns', "true", { maxAge: 900000, httpOnly: false });
+                response.cookie('snc', "alert-danger", { maxAge: 900000, httpOnly: false });
+                response.redirect('/control/admin/agenda/add');
+                response.end();
+            }
 
-                    _speaker.avatar = file._id;
 
-                    _speaker.save(function(err) {
+    } else {
+        response.redirect('/control/admin/login');
+        response.end();
+    }
+};
+AdminPanelController.prototype.update_agenda    = function (request, response) {
+    if(request.session.admin){
+
+        Agenda.findOne({_id : request.params.id}).exec(function (err, _agenda) {
+            if(_agenda){
+
+                // _agenda.place   = request.body.place;
+                _agenda.label    = request.body.label;
+                _agenda.time    = request.body.time;
+                _agenda.color    = request.body.color;
+                _agenda.date_sm   = request.body.date_sm;
+                _agenda.description   = request.body.description;
+                _agenda.priority   = request.body.priority;
+
+                _agenda.speakers   = [];
+
+                for(var i=1;i<=10;i++){
+                    _agenda.speakers.push(request.body["speaker"+i]);
+                }
+
+                if (_agenda.label) {
+
+                    _agenda.save(function(err) {
                         if (err) {
 
-                            response.cookie('snm', "Speaker not added!", { maxAge: 900000, httpOnly: false });
+                            response.cookie('snm', "Agenda not updated!", { maxAge: 900000, httpOnly: false });
                             response.cookie('sns', "true", { maxAge: 900000, httpOnly: false });
                             response.cookie('snc', "alert-danger", { maxAge: 900000, httpOnly: false });
-                            response.redirect('/control/admin/speaker/add');
-                            fs.unlink(ROOT_DIR + request.file.path);
+                            response.redirect('/control/admin/agenda/edit/'+request.params.id);
                             response.end();
 
                         } else {
-                            response.cookie('snm', "Speaker successfully added!", { maxAge: 900000, httpOnly: false });
+                            response.cookie('snm', "Agenda successfully updated!", { maxAge: 900000, httpOnly: false });
                             response.cookie('sns', "true", { maxAge: 900000, httpOnly: false });
                             response.cookie('snc', "alert-success", { maxAge: 900000, httpOnly: false });
-                            response.redirect('/control/admin/speaker/add');
-                            fs.unlink(ROOT_DIR + request.file.path);
+                            response.redirect('/control/admin/agenda/edit/'+request.params.id);
                             response.end();
                         }
                     });
+
+                } else {
+                    response.cookie('snm', "Agenda not updated! wrong params", { maxAge: 900000, httpOnly: false });
+                    response.cookie('sns', "true", { maxAge: 900000, httpOnly: false });
+                    response.cookie('snc', "alert-danger", { maxAge: 900000, httpOnly: false });
+                    response.redirect('/control/admin/agenda/edit/'+request.params.id);
+                    response.end();
+                }
+
+
+            } else{
+                console.log(err)
+                response.render( path.resolve('public/views/errors/404.jade'), {
+                    title           : "RICHSTONE: PAGE NOT FOUND"
                 });
-            } else {
-                response.cookie('snm', "Speaker not added! wrong image type", { maxAge: 900000, httpOnly: false });
-                response.cookie('sns', "true", { maxAge: 900000, httpOnly: false });
-                response.cookie('snc', "alert-danger", { maxAge: 900000, httpOnly: false });
-                response.redirect('/control/admin/speaker/add');
                 response.end();
             }
-        } else{
-            response.cookie('snm', "Partner not added! wrong image type or name", { maxAge: 900000, httpOnly: false });
-            response.cookie('sns', "true", { maxAge: 900000, httpOnly: false });
-            response.cookie('snc', "alert-danger", { maxAge: 900000, httpOnly: false });
-            response.redirect('/control/admin/speaker/add');
-            response.end();
-        }
+        });
 
     } else {
         response.redirect('/control/admin/login');
@@ -767,29 +863,21 @@ AdminPanelController.prototype.create_agenda     = function (request, response) 
 AdminPanelController.prototype.delete_agenda     = function (request, response) {
     if(request.session.admin){
 
-        Speaker.findOne({_id: request.body.id }).exec(function(err, _speaker) {
+        Agenda.findOne({_id: request.body.id }).exec(function(err, _agenda) {
             if (err) {
-                response.cookie('snm', "Can't delete speaker...", { maxAge: 900000, httpOnly: false });
+                response.cookie('snm', "Can't delete agenda...", { maxAge: 900000, httpOnly: false });
                 response.cookie('sns', "true", { maxAge: 900000, httpOnly: false });
                 response.cookie('snc', "alert-danger", { maxAge: 900000, httpOnly: false });
-                response.redirect('/control/admin/speaker');
+                response.redirect('/control/admin/agenda');
                 response.end();
             } else {
 
-                //remove file
-                var gfs = GRIDFS(CONNECTION.db);
-                gfs.remove({
-                    _id :  request.body.image_id
-                }, function (err) {
-                    if (err) return console.log(err);
-                });
+                _agenda.remove();
 
-                _speaker.remove();
-
-                response.cookie('snm', "Speaker successfully deleted!", { maxAge: 900000, httpOnly: false });
+                response.cookie('snm', "Agenda successfully deleted!", { maxAge: 900000, httpOnly: false });
                 response.cookie('sns', "true", { maxAge: 900000, httpOnly: false });
                 response.cookie('snc', "alert-success", { maxAge: 900000, httpOnly: false });
-                response.redirect('/control/admin/speaker');
+                response.redirect('/control/admin/agenda');
                 response.end();
 
             }

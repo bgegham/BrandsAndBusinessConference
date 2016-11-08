@@ -5,27 +5,18 @@ div(style="background:#fff")#about
                 br
                 |   about brands and business conference 2016
             hr
-            p.simple-text
-                |   Our mission is to outline trending
-                |   topics, bring together experts and professionals, accumulate and share knowledge,
-                |   ultimately resulting in the development of regional branding school and practices.
-                |   Brands &amp; Business is a conference for professionals and companies that covers present
-                |   challenges, opportunities and technologies in branding.
-                |   In its second year, the conference aims to become one of the biggest and most
-                |   significant events in the region.
-            p.simple-text
-                |   This year we are planning to bring together around
-                strong(style="font-weight: 600;")  60 specialists and 600 participants
-                |   in Yerevan and Tbilisi.
+            if _about.text1.length != 0
+                p.simple-text= _about.text1
+            if _about.text2.length != 0
+                p.simple-text= _about.text2
 
             .row
                 .clearfix
-                br
-                h3 Format and flow of the conference
-                p.simple-text
-                    |   During the conference workshops and lectures will be held in parallel, giving the
-                    |   participant the opportunity to prioritize, select and follow lecturers/topics that present
-                    |   most valuable information.
+                if _about.text3.length != 0
+                    br
+                    h3= _about.text3
+                if _about.text4.length != 0
+                    p.simple-text= _about.text4
 
 //
 // part 3
@@ -35,27 +26,25 @@ div._giftBl2
             .row
                 .col-xs-12.col-md-4
                     .overtext-control
-                        p.quote-text-info Duration of each panel session
-                        p.quote-text-number 1-1, 5 hour
+                        p.quote-text-info Conference
+                        p.quote-text-number Duration -10:00 – 19:00
                         hr
-                        p.quote-text-info Number of speakers in a single panel session
+                        p.quote-text-info Number of participants
+                        p.quote-text-number Tbilisi 300 - 400 | Yerevan 200 – 250
+                .col-xs-12.col-md-4
+                    .overtext-control
+                        p.quote-text-info Panel sessions
+                        p.quote-text-number Duration 1-1, 5 hour
+                        hr
+                        p.quote-text-info Number of speakers
                         p.quote-text-number 3-5
                 .col-xs-12.col-md-4
                     .overtext-control
-                        p.quote-text-info Duration of one workshop
-                        p.quote-text-number 1-1,5 hours
-                        hr
-                        p.quote-text-info Number of participants for each workshop
-                        p.quote-text-number 50
-                .col-xs-12.col-md-4
-                    .overtext-control
-                        p.quote-text-info Conference duration
-                        p.quote-text-number 10:00 - 19:00
+                        p.quote-text-info Workshops
+                        p.quote-text-number Duration 1-1, 5 hour
                         hr
                         p.quote-text-info Number of participants
-                        p.quote-text-number
-                            |   Tbilisi 300 - 400 |
-                            |   Yerevan 200 – 250
+                        p.quote-text-number 50
 
 
 //.cd-modal-action

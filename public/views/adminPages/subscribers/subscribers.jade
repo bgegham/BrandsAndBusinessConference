@@ -18,6 +18,9 @@ block specific_stylesheets
         .mail {
             font-size: 13px;
         }
+        .text-muted{
+            width: 100%;
+        }
 
 block content
     include ../../static/_admin_header
@@ -39,10 +42,18 @@ block content
                                                     .media-left
                                                         img.media-object.img-circle.profile-img(src='http://s3.amazonaws.com/37assets/svn/765-default-avatar.png')
                                                     .media-body
-                                                        h4.media-heading= item.name
+                                                        h4.media-heading #{item.firstName}
+                                                            | &nbsp;
+                                                            |   #{item.lastName}
                                                         .mail
                                                             a(href='mailto:'+item.email)= item.email
-                                                    .media-date.text-muted.pull-right= item.created_at
+                                                    .media-date.text-muted.pull-left Birth date: #{item.birthDate}
+                                                    .media-date.text-muted.pull-left Phone number: #{item.phoneNumber}
+                                                    .media-date.text-muted.pull-left Gender: #{item.gender}
+                                                    .media-date.text-muted.pull-left Position: #{item.position}
+                                                    .media-date.text-muted.pull-left Pos info: #{item.position_description}
+                                                    .media-date.text-muted.pull-left Selected ticket: #{item.ticket}
+                                                    .media-date.text-muted.pull-left Created_at: #{item.created_at}
                             else
                                 .box-body
                                     .col-sm-4
