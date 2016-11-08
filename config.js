@@ -6,7 +6,7 @@ module.exports = {
         SENDGRID_API_KEY : "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",
         EMAIL_FROM : "purchase@ticket",
         http_port: 8000,
-        http_host: '127.0.0.1'
+        http_host: '0.0.0.0'
     },
     production: {
         baseUrl : "http://37.186.125.214:8080",

@@ -20,7 +20,7 @@ var PagesController = function() {};
 PagesController.prototype.mainPage      =  function (request, response) {
 
     Slider.find({})
-        .sort({"priority" : -1})
+        .sort({"priority" : 1})
         .exec(function (err, _slider) {
             if(err){
                 console.log(err)
