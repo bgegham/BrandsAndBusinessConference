@@ -987,3 +987,7 @@ a.prt-gallerynail.active, a.prt-gallerynail:focus, a.prt-gallerynail:hover {
     color: #909090;
     line-height: 1.4;
 }
+#privacy p{
+    font-size: 14px;
+    margin-bottom: 14px;
+}
