@@ -65,12 +65,12 @@ block content
                                             input.form-control(placeholder="Write speaker name/position",type="text",name="speaker9")
                                             input.form-control(placeholder="Write speaker name/position",type="text",name="speaker10")
                                         .form-group
-                                            label Border color (default:  #1288df   - blue)
+                                            label Border color (help:  #1288df   - blue)
                                             input.form-control(placeholder="Color code",type="text",name="color", value=(agenda && agenda.color) ? agenda.color : '')
                                             if errors && errors.errors.color
                                                 p.text-error= errors.errors.color
                                         .form-group
-                                            label Background color (default:  #ffffff   - white)
+                                            label Background color (help:  #ffffff   - white)
                                             input.form-control(placeholder="Color code",type="text",name="bgcolor", value=(agenda && agenda.bgcolor) ? agenda.bgcolor : '')
                                             if errors && errors.errors.bgcolor
                                                 p.text-error= errors.errors.bgcolor

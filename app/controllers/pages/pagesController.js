@@ -41,16 +41,34 @@ PagesController.prototype.mainPage      =  function (request, response) {
                                 }
                             }).then(function (_speakers) {
 
-                                About.find({}).exec(function (err, _about) {
-                                    response.render( path.resolve('public/views/pages/main/index.jade'), {
-                                        title           : "Brands & Business: brands business conference 2016",
-                                        _sliderData     : _slider,
-                                        _partnerData    : _partner,
-                                        _speakersData   : _speakers,
-                                        _about          : _about[0]
+                            Agenda.find({date:"24/11/2016"}).exec(function (err, _agenda24) {
+
+                                Agenda.find({date:"26/11/2016"}).exec(function (err, _agenda26) {
+
+
+                                    About.find({}).exec(function (err, _about) {
+
+
+                                        response.render( path.resolve('public/views/pages/main/index.jade'), {
+                                            title           : "Brands & Business: brands business conference 2016",
+                                            _sliderData     : _slider,
+                                            _partnerData    : _partner,
+                                            _speakersData   : _speakers,
+                                            _about          : _about[0],
+                                            _agenda24          : _agenda24,
+                                            _agenda26          : _agenda26
+                                        });
+                                        response.end();
+
+
+
                                     });
-                                    response.end();
+
                                 });
+
+
+                            });
+
 
 
                         });
