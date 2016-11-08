@@ -9,8 +9,9 @@ header.cd-main-header.animate-search
                 a(href='#about') About
             li
                 a(href='#agenda') Agenda
-            li
-                a(href='#speakers') Speakers
+            if _speakersData.length
+                li
+                    a(href='#speakers') Speakers
             li
                 a(href='#buyTicket') Buy a ticket
             if _partnerData.length
