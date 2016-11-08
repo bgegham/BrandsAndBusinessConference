@@ -458,14 +458,14 @@ Main Components
     text-align: left;
     float: left;
     line-height: 28px;
-    font: 100 3rem "Lato",sans-serif;
+    font: 300 3rem "Lato",sans-serif;
     color: #444444;
 }
 .cilabs-schedule-time {
     display: block;
     width: 100%;
     text-align: left;
-    font: 100 15px "Lato",sans-serif;
+    font: 300 15px "Lato",sans-serif;
     color: #444444;
 }
 .cilabs-schedule-title{
