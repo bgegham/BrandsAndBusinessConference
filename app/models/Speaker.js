@@ -4,6 +4,11 @@ var config              = require('../../config')[APP_ENV],
     uniqueValidator     = require('mongoose-unique-validator');
 
 var speakerSchema = new Schema({
+    tab_country : {
+        type: String,
+        index: true,
+        default: "armenia"
+    },
     name : {
         type: String,
         index: true,
@@ -23,6 +28,10 @@ var speakerSchema = new Schema({
     },
     avatar: {
         type : Schema.ObjectId
+    },
+    priority : {
+        type : Number,
+        default : 1
     },
     created_at: {
         type: Date,

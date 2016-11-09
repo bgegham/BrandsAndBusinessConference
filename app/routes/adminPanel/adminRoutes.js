@@ -41,16 +41,18 @@ module.exports = function(app, multipart) {
     // speaker
     app.get('/control/admin/speaker',               multipart.array(), function(req, res){ adminPanelController.get_speakers(req, res); });
     app.get('/control/admin/speaker/add',           multipart.array(), function(req, res){ adminPanelController.add_speakers(req, res); });
+    app.get('/control/admin/speaker/edit/:id',      multipart.array(), function(req, res){ adminPanelController.edit_speakers(req, res); });
+    app.post('/control/admin/speaker/edit/:id',     multipart.single('avatar'), function(req, res){ adminPanelController.update_speakers(req, res); });
     app.post('/control/admin/speaker/add',          multipart.single('avatar'), function(req, res){ adminPanelController.create_speaker(req, res); });
     app.post('/control/admin/speaker/delete',       multipart.array(), function(req, res){ adminPanelController.delete_speaker(req, res); });
 
     // agenda
-    app.get('/control/admin/agenda',              multipart.array(), function(req, res){ adminPanelController.get_agenda(req, res); });
-    app.get('/control/admin/agenda/add',          multipart.array(), function(req, res){ adminPanelController.add_agenda(req, res); });
-    app.post('/control/admin/agenda/add',         multipart.array(), function(req, res){ adminPanelController.create_agenda(req, res); });
-    app.get('/control/admin/agenda/edit/:id',     multipart.array(), function(req, res){ adminPanelController.edit_agenda(req, res); });
-    app.post('/control/admin/agenda/edit/:id',     multipart.array(), function(req, res){ adminPanelController.update_agenda(req, res); });
-    app.post('/control/admin/agenda/delete',      multipart.array(), function(req, res){ adminPanelController.delete_agenda(req, res); });
+    app.get('/control/admin/agenda',                multipart.array(), function(req, res){ adminPanelController.get_agenda(req, res); });
+    app.get('/control/admin/agenda/add',            multipart.array(), function(req, res){ adminPanelController.add_agenda(req, res); });
+    app.post('/control/admin/agenda/add',           multipart.array(), function(req, res){ adminPanelController.create_agenda(req, res); });
+    app.get('/control/admin/agenda/edit/:id',       multipart.array(), function(req, res){ adminPanelController.edit_agenda(req, res); });
+    app.post('/control/admin/agenda/edit/:id',      multipart.array(), function(req, res){ adminPanelController.update_agenda(req, res); });
+    app.post('/control/admin/agenda/delete',        multipart.array(), function(req, res){ adminPanelController.delete_agenda(req, res); });
 
 
 

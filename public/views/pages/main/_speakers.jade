@@ -1,23 +1,52 @@
 div(style="background: #fff")#speakers
-    .container
-        if _speakersData.length
-            div
-                .row
-                    h1.txt-shadow Speakers
-                    hr
-                    .clearfix
-                .row
-                    each item in _speakersData
-                        .col-lg-3.col-md-4.col-xs-12.partners-gallery
-                            .item
-                                figure
-                                    a.fancybox
-                                        img(alt=item.name, src='/images/'+item.avatar)
-                                figcaption
-                                    h4.title= item.name
-                                    span.sub-title
-                                        strong= item.position
-                                    span.sub-text
-                                        strong= item.company
-                                    span.sub-title
-                                        strong= item.country
+    if _speakersData.length
+        .container
+            .row
+                h1.txt-shadow Speakers
+                hr
+                .clearfix
+                .cd-pricing-container.cd-has-margins
+                    .cd-pricing-switcher
+                        p.fieldset
+                            input#monthly-4(data-target='#custom_carousel', data-slide-to='0', checked='',type='radio',)
+                            label(for='monthly-4') Armenia
+                            input#yearly-4(data-target='#custom_carousel', data-slide-to='1',type='radio')
+                            label(for='yearly-4') Georgia
+                            span.cd-switch#elcd
+                .clearfix
+                #custom_carousel.carousel.slide(data-ride='carousel',data-interval="false")
+                    .carousel-inner
+                        .item.active
+                            .row
+                                each item in _speakersData
+                                    if item.tab_country == "armenia"
+                                        .col-lg-3.col-md-4.col-xs-12.partners-gallery
+                                            .item
+                                                figure
+                                                    a.fancybox
+                                                        img(alt=item.name, src='/images/' + item.avatar)
+                                                figcaption
+                                                    h4.title= item.name
+                                                    span.sub-title
+                                                        strong= item.position
+                                                    span.sub-text
+                                                        strong= item.company
+                                                    span.sub-title
+                                                        strong= item.country
+                        .item
+                            .row
+                                each item in _speakersData
+                                    if item.tab_country == "georgia"
+                                        .col-lg-3.col-md-4.col-xs-12.partners-gallery
+                                            .item
+                                                figure
+                                                    a.fancybox
+                                                        img(alt=item.name, src='/images/' + item.avatar)
+                                                figcaption
+                                                    h4.title= item.name
+                                                    span.sub-title
+                                                        strong= item.position
+                                                    span.sub-text
+                                                        strong= item.company
+                                                    span.sub-title
+                                                        strong= item.country

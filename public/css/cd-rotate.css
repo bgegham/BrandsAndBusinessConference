@@ -91,6 +91,14 @@
     transform: translateX(90px);
 }
 
+.cd-right{
+    -webkit-transform: translateX(90px);
+    -moz-transform: translateX(90px);
+    -ms-transform: translateX(90px);
+    -o-transform: translateX(90px);
+    transform: translateX(90px);
+}
+
 .no-js .cd-pricing-switcher {
     display: none;
 }

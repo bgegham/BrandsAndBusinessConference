@@ -71,23 +71,16 @@ block content
                 .col-xs-12
                     .box.box-primary
                         .box-header.with-border
-                            h3.box-title Create speaker
-                        form(method="post",role='form', action="/control/admin/speaker/add", enctype="multipart/form-data")
+                            h3.box-title Update speaker
+                        form(method="post",role='form', enctype="multipart/form-data", action="/control/admin/speaker/edit/#{speaker._id}")
                             .box-body
                                 .row
-                                    .col-xs-6
-                                        .custom-input-file
-                                            label.uploadPhoto
-                                                | Edit
-                                                input#avatar.change-avatar(type='file', name='avatar')
-                                        div
-                                            label Size : (400x400)px
+                                    .col-xs-12
                                         .form-group
                                             label(style='margin-top: 25px') Tab country (armenia or georgia)
                                             select.form-control(name="tab_country")
-                                                option(value="armenia") Armenia
-                                                option(value="georgia") Georgia
-                                    .col-xs-6
+                                                option(value="armenia", selected=(speaker.tab_country == "armenia") ? true : false) Armenia
+                                                option(value="georgia", selected=(speaker.tab_country == "georgia") ? true : false) Georgia
                                         .form-group
                                             label(style='margin-top: 25px') Name
                                             input.form-control(placeholder="Write name...",type="text",name="name",required=true, value=(speaker && speaker.name) ? speaker.name : '')
@@ -114,19 +107,54 @@ block content
                                             if errors && errors.errors.priority
                                                 p.text-error= errors.errors.priority
 
+                                .row
+                                    .col-xs-12
+                                        .form-group.required
+                                            label(for='inputFile') Image input
+                                            .input-group
+                                                span.input-group-btn
+                                                    span.btn.btn-default.btn-file
+                                                        | Browse&mldr;
+                                                        input#inputFile(name="avatar",type='file')
+                                                input.form-control(type='text', readonly='')
+                                            if errors && errors.image
+                                                p.text-error= errors.image
+                                            p.help-block Select speaker image in (400 x 400) px size.
+                                            img#img-upload(style="height: 100px;", src="/images/#{speaker.avatar}")
                             .box-footer.text-right
                                 button.btn.btn3d.btn-default(type='reset', style="margin-right:15px;") Reset
-                                button.btn.btn3d.btn-success(type='submit') Create
-            script.
-                function readURL(input) {
-                    if (input.files && input.files[0]) {
-                        var reader = new FileReader();
-                        reader.onload = function (e) {
-                            $('.custom-input-file').css('background-image', 'url(' + e.target.result + ')');
-                        }
-                        reader.readAsDataURL(input.files[0]);
-                    }
+                                button.btn.btn3d.btn-success(type='submit') Update
+        script.
+            $(document).on('change', '.btn-file :file', function () {
+                var input = $(this),
+                        label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+                input.trigger('fileselect', [label]);
+            });
+
+            $('.btn-file :file').on('fileselect', function (event, label) {
+
+                var input = $(this).parents('.input-group').find(':text'),
+                        log = label;
+
+                if (input.length) {
+                    input.val(log);
+                } else {
+                    if (log) alert(log);
                 }
-                $("#avatar").change(function () {
-                    readURL(this);
-                });
+
+            });
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('#img-upload').attr('src', e.target.result);
+                    }
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+
+            $("#inputFile").change(function () {
+                readURL(this);
+            });

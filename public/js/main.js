@@ -12,6 +12,13 @@ $(document).ready(function(){
         $('body').addClass('ready-load');
     },500);
 
+    $('#yearly-4').click(function () {
+        $('#elcd').addClass('cd-right');
+    });
+    $('#monthly-4').click(function () {
+        $('#elcd').removeClass('cd-right');
+    });
+
     $('.agenda-control').on('click', function () {
         $($(this).data('target')).collapse('toggle');
     });

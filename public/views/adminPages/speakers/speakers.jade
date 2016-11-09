@@ -38,6 +38,11 @@ block specific_stylesheets
             top: 10px;
             right: 10px;
         }
+
+        .btn-info {
+            font-size: 14px;
+            top: 45px;
+        }
 block content
     include ../../static/_admin_header
     #wrapper
@@ -53,22 +58,63 @@ block content
                         .box-header.with-border
                             h3.box-title Speakers list
                         .box-body
+                            .tabbable-panel
+                                .tabbable-line
+                                    ul.nav.nav-tabs
+                                        li.active
+                                            a(href="#tab_a",data-toggle="tab") Armenia
+                                        li
+                                            a(href="#tab_b",data-toggle="tab") Georgia
+                                    .tab-content(style='display:table;width: 100%;')
+                                        .tab-pane.active( id="tab_a" )
+                                            br
+                                            .col-xs-12
+                                                if speakersData.length
+                                                    each item in speakersData
+                                                        if item.tab_country && item.tab_country == 'armenia'
+                                                            .col-sm-3.card
+                                                                form(action="/control/admin/speaker/delete", method="post",style="display: inline;")
+                                                                    input(type="hidden",value=item._id,name="id")
+                                                                    input(type="hidden",value=item.avatar,name="image_id")
+                                                                    button.btn.prt-delete.btn-xs.btn-danger(type="submit",onclick="return confirm('Are you sure?')",title="Delete")
+                                                                        i.fa.fa-trash-o
+                                                                a.btn.prt-delete.btn-xs.btn-info(href="/control/admin/speaker/edit/" + item._id,title="Edit")
+                                                                    i.fa.fa-edit
+                                                                img.card-img-top(src='/images/' + item.avatar, alt=item.name)
+                                                                h4.card-title= item.name
+                                                                h4.card-title= item.position
+                                                                h4.card-title= item.company
+                                                                h4.card-title= item.country
+                                                                h4.card-title PRIORITY: #{item.priority}
+                                                else
+                                                    .col-sm-3.card
+                                                        img.card-img-top(src='http://www.dancesportireland.org/images/images/whoswho.png', alt="no speakers")
+                                                        h4.card-title Nothing to show
+                                        .tab-pane( id="tab_b" )
+                                            br
+                                            .col-xs-12
+                                                if speakersData.length
+                                                    each item in speakersData
+                                                        if item.tab_country && item.tab_country == 'georgia'
+                                                            .col-sm-3.card
+                                                                form(action="/control/admin/speaker/delete", method="post",style="display: inline;")
+                                                                    input(type="hidden",value=item._id,name="id")
+                                                                    input(type="hidden",value=item.avatar,name="image_id")
+                                                                    button.btn.prt-delete.btn-xs.btn-danger(type="submit",onclick="return confirm('Are you sure?')",title="Delete")
+                                                                        i.fa.fa-trash-o
+                                                                a.btn.prt-delete.btn-xs.btn-info(href="/control/admin/speaker/edit/" + item._id,title="Edit")
+                                                                    i.fa.fa-edit
+                                                                img.card-img-top(src='/images/' + item.avatar, alt=item.name)
+                                                                h4.card-title= item.name
+                                                                h4.card-title= item.position
+                                                                h4.card-title= item.company
+                                                                h4.card-title= item.country
+                                                                h4.card-title PRIORITY: #{item.priority}
+
+                                                else
+                                                    .col-sm-3.card
+                                                        img.card-img-top(src='http://www.dancesportireland.org/images/images/whoswho.png', alt="no speakers")
+                                                        h4.card-title Nothing to show
+
                             .row
                                 .col-xs-12
-                                    if speakers.length
-                                        each item in speakers
-                                            .col-sm-3.card
-                                                form(action="/control/admin/speaker/delete", method="post",style="display: inline;")
-                                                    input(type="hidden",value=item._id,name="id")
-                                                    input(type="hidden",value=item.avatar,name="image_id")
-                                                    button.btn.prt-delete.btn-xs.btn-danger(type="submit",onclick="return confirm('Are you sure?')",title="Delete")
-                                                        i.fa.fa-trash-o
-                                                img.card-img-top(src='/images/'+item.avatar, alt=item.name)
-                                                h4.card-title= item.name
-                                                h4.card-title= item.position
-                                                h4.card-title= item.company
-                                                h4.card-title= item.country
-                                    else
-                                        .col-sm-3.card
-                                            img.card-img-top(src='http://www.dancesportireland.org/images/images/whoswho.png', alt="no speakers")
-                                            h4.card-title Nothing to show
