@@ -7,6 +7,7 @@ $(document).ready(function(){
                 $('.armAg').click();
             }else {
                 $('#yearly-2').click();
+                $('#yearly-4').click();
             }
         }, "jsonp");
         $('body').addClass('ready-load');
