@@ -18,7 +18,9 @@
         font-weight: 300;
     }
 }
-
+.hide-big{
+    display: block;
+}
 .cd-pricing-footer {
     display: none;
 }
@@ -35,7 +37,9 @@
         width: 100%;
         max-width: none;
     }
-
+    .hide-big{
+        display: none;
+    }
     .cd-pricing-footer {
         display: block;
     }
@@ -90,13 +94,29 @@
     -o-transform: translateX(90px);
     transform: translateX(90px);
 }
-
+.cd-pricing-switcher2 input[type="radio"]:checked + label + .cd-switch2,
+.cd-pricing-switcher2 input[type="radio"]:checked + label:nth-of-type(n) + .cd-switch2 {
+    /* use label:nth-of-type(n) to fix a bug on safari with multiple adjacent-sibling selectors*/
+    -webkit-transform: translateX(90px);
+    -moz-transform: translateX(90px);
+    -ms-transform: translateX(90px);
+    -o-transform: translateX(90px);
+    transform: translateX(90px);
+}
 .cd-right{
     -webkit-transform: translateX(90px);
     -moz-transform: translateX(90px);
     -ms-transform: translateX(90px);
     -o-transform: translateX(90px);
     transform: translateX(90px);
+}
+
+.cd-left{
+    -webkit-transform: translateX(0px);
+    -moz-transform: translateX(0px);
+    -ms-transform: translateX(0px);
+    -o-transform: translateX(0px);
+    transform: translateX(0px);
 }
 
 .no-js .cd-pricing-switcher {
@@ -330,8 +350,8 @@
     height: 80px;
     padding: 1em;
     pointer-events: none;
-    background-color: #3aa0d1;
-    color: #FFFFFF;
+    /*background-color: #3aa0d1;*/
+    /*color: #FFFFFF;*/
 }
 .cd-pricing-header h2 {
     margin-bottom: 3px;
@@ -339,7 +359,7 @@
     text-transform: uppercase;
 }
 .cd-popular .cd-pricing-header {
-    background-color: #e97d68;
+    color: #1288df;
 }
 @media only screen and (min-width: 768px) {
     .cd-pricing-header {
@@ -444,7 +464,6 @@
     clear: both;
 }
 .cd-pricing-features li {
-    float: left;
     padding: 1.6em 1em;
     font-size: 1.4rem;
     text-align: center;
@@ -493,7 +512,6 @@
     z-index: 1;
     top: 0;
     left: 0;
-    /* on mobile it covers the .cd-pricing-header */
     height: 80px;
     width: 100%;
 }
@@ -523,6 +541,9 @@
     }
     .cd-pricing-footer::after {
         /* hide arrow */
+        display: none;
+    }
+    .hide-big{
         display: none;
     }
     .cd-has-margins .cd-pricing-footer {
