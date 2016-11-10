@@ -201,7 +201,7 @@ PagesController.prototype.contactUs = function(request, response) {
             }, function(err, html){
 
                     var from_email  = new emailHelper.Email("purchase@ticket");
-                    var to_email    = new emailHelper.Email("b.gegham@gmail.com");
+                    var to_email    = new emailHelper.Email("info@brandsandbusiness.am");
                     var subject     = "Purchase ticket";
                     var content     = new emailHelper.Content('text/html', html);
                     var mail    = new emailHelper.Mail(from_email, subject, to_email, content);
@@ -258,7 +258,7 @@ PagesController.prototype.subscribeUser = function (request, response) {
             }, function(err, html){
 
                 var from_email  = new emailHelper.Email("subscribe@user");
-                var to_email    = new emailHelper.Email("b.gegham@gmail.com");
+                var to_email    = new emailHelper.Email("info@brandsandbusiness.am");
                 var subject     = "NEW SUBSCRIBER";
                 var content     = new emailHelper.Content('text/html', html);
                 var mail    = new emailHelper.Mail(from_email, subject, to_email, content);

@@ -631,8 +631,9 @@ footer#contacts h3{
 footer#contacts h3 a{
     margin: 0 10px;
 }
-footer#contacts h3 a i{
+footer#contacts a h3 i{
     color: #3b5998;
+    margin-left: 10px;
     font-size: 24px;
 }
 footer#contacts p a span{
