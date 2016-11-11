@@ -992,3 +992,27 @@ a.prt-gallerynail.active, a.prt-gallerynail:focus, a.prt-gallerynail:hover {
     font-size: 14px;
     margin-bottom: 14px;
 }
+.btn-facebook{
+    background-color: #306199;
+    color: #fff;
+    padding: 10px 23px;
+    font-size: 18px;
+    font-weight: 300;
+    border: solid 2px transparent;
+}
+.btn-facebook:active,.btn-facebook:focus{
+    background-color: #306199;
+    color: #fff;
+    padding: 10px 23px;
+    font-size: 18px;
+    font-weight: 300;
+    border: solid 2px transparent;
+}
+.btn-facebook:hover {
+    background-color: #fff;
+    color: #306199;
+    border: solid 2px #306199;
+}
+.btn-facebook i{
+    margin-right: 5px;
+}

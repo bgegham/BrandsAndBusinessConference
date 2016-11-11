@@ -43,8 +43,17 @@ footer#contacts
                 .subscribe-form-success
                     h2 Thank you for subscribing!
                 .clearfix
-            .col-xs-12
-                a.privace.text-left(data-toggle="modal",data-target="#privacy",style="float:left") Privacy policy
+            .clearfix
+            br
+            .col-xs-12.clearfix.text-left
+                a.pull-left.btn-facebook(
+                    href='https://www.facebook.com/sharer/sharer.php?u=http://brandsandbusiness.am/',
+                    target="popup"
+                    onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=http://brandsandbusiness.am/','Facebook share','width=600,height=400'); return false;"
+                )
+                    i.fa.fa-facebook-square
+                    |   |   Share with facebook
+                a.privace.pull-right(data-toggle="modal",data-target="#privacy",style="top: 14px;position: relative;") Privacy policy
 
 
 div
