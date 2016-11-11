@@ -416,6 +416,7 @@ AdminPanelController.prototype.create_slider    = function (request, response) {
         var _slider                 = new Slider();
             _slider.name            = request.body.name;
             _slider.description     = request.body.description;
+            _slider.priority        = request.body.priority;
 
         if (request.file) {
 
