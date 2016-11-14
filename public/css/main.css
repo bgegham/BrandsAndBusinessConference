@@ -992,6 +992,9 @@ a.prt-gallerynail.active, a.prt-gallerynail:focus, a.prt-gallerynail:hover {
     font-size: 14px;
     margin-bottom: 14px;
 }
+#custom_carousel .item{
+    min-height: 300px;
+}
 .btn-facebook{
     background-color: #306199;
     color: #fff;
