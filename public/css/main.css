@@ -528,11 +528,12 @@ li[aria-expanded=true]>a>.pull-right-container i{
     font-weight: 300;
 }
 .quote-text-info{
-    font-size: 16px;
+    font-weight: 300;
+    font-size: 24px;
+    margin-bottom: 3px;
 }
 .quote-text-number{
-    font-weight: 300;
-    font-size: 20px;
+    font-size: 16px;
 }
 .carousel-fade{
     margin-bottom: 50px;
