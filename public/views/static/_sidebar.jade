@@ -64,6 +64,22 @@ script.
                     a(href="/control/admin/agenda/add")
                         i.fa.fa-angle-double-right
                         |  Add
+        li(class=(active_menu === 'workshop' ? 'activeMenu' : ''), data-toggle="collapse",data-target="#_workshop", data-parent="#myAccordion")
+            span.selected
+            a
+                i.fa.fa-shopping-bag
+                span Workshop
+                span.pull-right-container
+                    i.fa.fa-angle-left.pull-right
+            ul#_workshop.sub-menu.collapse
+                li
+                    a(href="/control/admin/workshop")
+                        i.fa.fa-angle-double-right
+                        |  View
+                li
+                    a(href="/control/admin/workshop/add")
+                        i.fa.fa-angle-double-right
+                        |  Add
         li(class=(active_menu === 'partners' ? 'activeMenu' : ''), data-toggle="collapse",data-target="#_partners", data-parent="#myAccordion")
             span.selected
             a

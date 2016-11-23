@@ -1,0 +1,59 @@
+extends ../../layouts/admin_layout
+
+block specific_stylesheets
+    link(rel='stylesheet', href='/css/admin.css')
+
+block content
+    include ../../static/_admin_header
+    #wrapper
+        include ../../static/_sidebar
+        #page-content-wrapper
+            .alert-control(style='display: none;')
+                .alert
+                    a.close(href="#",data-dismiss="alert",aria-label="close") &times;
+                    strong
+            .row
+                .col-xs-12
+                    .box.box-primary
+                        .box-header.with-border
+                            h3.box-title Workshop edit
+                        form(method="post",role='form', action="/control/admin/workshop/edit/#{workshop._id}")
+                            .box-body
+                                .row
+                                    .col-xs-12.col-md-6
+                                        .form-group
+                                            label Date: #{workshop.date}
+                                        .form-group
+                                            label Time (hh:mm - hh:mm)
+                                            input.form-control(placeholder="Write time",type="text",name="time",required=true, value=(workshop && workshop.time) ? workshop.time : '')
+                                            if errors && errors.errors.time
+                                                p.text-error= errors.errors.time
+                                        .form-group
+                                            label Conducts
+                                            input.form-control(placeholder="Write conducts",type="text",name="conducts",required=true, value=(workshop && workshop.conducts) ? workshop.conducts : '')
+                                            if errors && errors.errors.conducts
+                                                p.text-error= errors.errors.conducts
+                                        .form-group
+                                            label Theme
+                                            textarea.form-control(rows="5",placeholder="Write theme...",type="text",name="theme")= (workshop && workshop.theme) ? workshop.theme : ''
+                                            if errors && errors.errors.theme
+                                                p.text-error= errors.errors.theme
+                                    .col-xs-12.col-md-6
+                                        .form-group
+                                            label Border color (help:  #1288df   - blue)
+                                            input.form-control(placeholder="Color code",type="text",name="color", value=(workshop && workshop.color) ? workshop.color : '')
+                                            if errors && errors.errors.color
+                                                p.text-error= errors.errors.color
+                                        .form-group
+                                            label Background color (help:  #ffffff   - white)
+                                            input.form-control(placeholder="Color code",type="text",name="bgcolor", value=(workshop && workshop.bgcolor) ? workshop.bgcolor : '')
+                                            if errors && errors.errors.bgcolor
+                                                p.text-error= errors.errors.bgcolor
+                                        .form-group
+                                            label Priority in view
+                                            input.form-control(placeholder="Priority",type="number",name="priority", value=(workshop && workshop.priority) ? workshop.priority : '')
+                                            if errors && errors.errors.priority
+                                                p.text-error= errors.errors.priority
+                            .box-footer.text-right
+                                button.btn.btn3d.btn-default(type='reset', style="margin-right:15px;") Reset
+                                button.btn.btn3d.btn-success(type='submit') Update

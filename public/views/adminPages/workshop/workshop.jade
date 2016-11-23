@@ -1,0 +1,67 @@
+extends ../../layouts/admin_layout
+
+block specific_stylesheets
+    link(rel='stylesheet', href='/css/admin.css')
+    link(rel='stylesheet', href='/css/agenda.css')
+    style.
+        .btn{
+            position: absolute;
+            top:0;
+            right: 0;
+            z-index: 20;
+        }
+        .btn-info{
+            right:25px;
+        }
+
+block content
+    include ../../static/_admin_header
+    #wrapper
+        include ../../static/_sidebar
+        #page-content-wrapper
+            .alert-control(style='display: none;')
+                .alert
+                    a.close(href="#",data-dismiss="alert",aria-label="close") &times;
+                    strong
+            .row
+                .col-xs-12
+                    h3.box-title Workshop preview
+                    .clearfix
+                    .tabbable-panel
+                        .tabbable-line
+                            ul.nav.nav-tabs
+                                li.active
+                                    a(href="#tab_a",data-toggle="tab") 24/11/2016
+                                li
+                                    a(href="#tab_b",data-toggle="tab") 26/11/2016
+                            .tab-content(style='display:table;width: 100%;')
+                                .tab-pane.active( id="tab_a" )
+                                    br
+                                    .col-xs-12(style="max-width: 800px")
+                                        if _workshop24
+                                            each item in _workshop24
+                                                .row.workshop-control(style="background:#" + item.bgcolor, class=(item.color == item.bgcolor) ? "break-agenda" : "" )
+                                                    .col-xs-12
+                                                        form(action="/control/admin/workshop/delete", method="post",style="display: inline;")
+                                                            input(type="hidden",value=item._id,name="id")
+                                                            button.btn.prt-delete.btn-xs.btn-danger(type="submit",onclick="return confirm('Are you sure?')",title="Delete")
+                                                                i.fa.fa-trash-o
+                                                        a.btn.prt-delete.btn-xs.btn-info(href="/control/admin/workshop/edit/"+item._id,title="Edit")
+                                                            i.fa.fa-edit
+                                                    .col-xs-12.col-md-3
+                                                        .bordered-left(style="border-left-color:#"+item.color)
+                                                        span.cilabs-schedule-day.text-nowrap= item.time
+                                                        span(style="color:red") Priority: #{item.priority}
+                                                        span.mob.stage-btn.Night.Summit
+                                                    .col-xs-12.col-md-9
+                                                        p.clearfix= item.conducts
+                                                        p ---
+                                                        p.clearfix= item.theme
+                                                br
+                                                .clearfix
+
+                                .tab-pane( id="tab_b" )
+                                    br
+                                    .col-xs-12(style="max-width: 800px")
+
+

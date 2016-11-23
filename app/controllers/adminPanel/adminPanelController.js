@@ -7,6 +7,7 @@ var config                  = require('../../../config')[APP_ENV],
     Admin                   = require('../../models/Admin'),
     User                    = require('../../models/User'),
     Agenda                  = require('../../models/Agenda'),
+    Workshop                = require('../../models/Workshop'),
     Partner                 = require('../../models/Partner'),
     Speaker                 = require('../../models/Speaker'),
     About                   = require('../../models/About'),
@@ -572,7 +573,7 @@ AdminPanelController.prototype.edit_speakers    = function (request, response) {
             } else{
                 console.log(err);
                 response.render( path.resolve('public/views/errors/404.jade'), {
-                    title           : "RICHSTONE: PAGE NOT FOUND"
+                    title           : "Brands & Business: PAGE NOT FOUND"
                 });
                 response.end();
             }
@@ -864,7 +865,7 @@ AdminPanelController.prototype.edit_agenda      = function (request, response) {
             } else{
                 console.log(err);
                 response.render( path.resolve('public/views/errors/404.jade'), {
-                    title           : "RICHSTONE: PAGE NOT FOUND"
+                    title           : "Brands & Business: PAGE NOT FOUND"
                 });
                 response.end();
             }
@@ -983,7 +984,7 @@ AdminPanelController.prototype.update_agenda    = function (request, response) {
             } else{
                 console.log(err);
                 response.render( path.resolve('public/views/errors/404.jade'), {
-                    title           : "RICHSTONE: PAGE NOT FOUND"
+                    title           : "Brands & Business: PAGE NOT FOUND"
                 });
                 response.end();
             }
@@ -1012,6 +1013,224 @@ AdminPanelController.prototype.delete_agenda    = function (request, response) {
                 response.cookie('sns', "true", { maxAge: 900000, httpOnly: false });
                 response.cookie('snc', "alert-success", { maxAge: 900000, httpOnly: false });
                 response.redirect('/control/admin/agenda');
+                response.end();
+
+            }
+        });
+
+    } else {
+        response.redirect('/control/admin/login');
+        response.end();
+    }
+};
+
+
+// workshop
+AdminPanelController.prototype.get_workshop       = function (request, response) {
+    if(request.session.admin){
+
+        Workshop.find({date:"24/11/2016"})
+            .sort({"priority" : 1})
+            .exec(function (err, _workshop24) {
+                if(err){
+                    response.redirect('/control/admin/workshop');
+                    response.end();
+                } else {
+
+                    Workshop.find({date:"26/11/2016"})
+                        .sort({"priority" : 1})
+                        .exec(function (err, _workshop26) {
+                            if(err){
+                                response.redirect('/control/admin/workshop');
+                                response.end();
+                            } else {
+
+                                response.render( path.resolve('public/views/adminPages/workshop/workshop.jade'), {
+                                    title               : "Brands & Business: admin workshop",
+                                    active_menu         : "workshop",
+                                    username            : request.session.admin.username,
+                                    _workshop24         : _workshop24,
+                                    _workshop26         : _workshop26
+                                });
+                                response.end();
+                            }
+                        });
+
+                }
+            });
+
+
+    } else {
+        response.redirect('/control/admin/login');
+        response.end();
+    }
+};
+AdminPanelController.prototype.add_workshop       = function (request, response) {
+    if(request.session.admin){
+
+        response.render( path.resolve('public/views/adminPages/workshop/add.jade'), {
+            title       : "Brands & Business: admin workshop add",
+            menu        : "workshop",
+            username    : request.session.admin.username,
+            workshop    : false,
+            errors      : false
+        });
+        response.end();
+
+    } else {
+        response.redirect('/control/admin/login');
+        response.end();
+    }
+};
+AdminPanelController.prototype.edit_workshop      = function (request, response) {
+    if(request.session.admin){
+
+        Workshop.findOne({_id : request.params.id}).exec(function (err, workshop) {
+            if(workshop){
+                response.render( path.resolve('public/views/adminPages/workshop/edit.jade'), {
+                    title       : "Brands & Business: admin workshop edit",
+                    menu        : "workshop",
+                    username    : request.session.admin.username,
+                    workshop    : workshop,
+                    errors      : false
+                });
+                response.end();
+            } else{
+                console.log(err);
+                response.render( path.resolve('public/views/errors/404.jade'), {
+                    title           : "Brands & Business: PAGE NOT FOUND"
+                });
+                response.end();
+            }
+        });
+
+    } else {
+        response.redirect('/control/admin/login');
+        response.end();
+    }
+};
+AdminPanelController.prototype.create_workshop    = function (request, response) {
+    if(request.session.admin){
+
+    var _workshop           = new Workshop();
+        _workshop.date      = request.body.date;
+        _workshop.time      = request.body.time;
+        _workshop.conducts  = request.body.conducts;
+        _workshop.theme     = request.body.theme;
+        _workshop.color     = request.body.color;
+        _workshop.bgcolor   = request.body.bgcolor;
+        _workshop.priority  = request.body.priority;
+
+
+        if (_workshop.date && _workshop.date) {
+
+            _workshop.save(function(err) {
+                if (err) {
+
+                    response.cookie('snm', "Workshop not added!", { maxAge: 900000, httpOnly: false });
+                    response.cookie('sns', "true", { maxAge: 900000, httpOnly: false });
+                    response.cookie('snc', "alert-danger", { maxAge: 900000, httpOnly: false });
+                    response.redirect('/control/admin/workshop/add');
+                    response.end();
+
+                } else {
+                    response.cookie('snm', "Workshop successfully added!", { maxAge: 900000, httpOnly: false });
+                    response.cookie('sns', "true", { maxAge: 900000, httpOnly: false });
+                    response.cookie('snc', "alert-success", { maxAge: 900000, httpOnly: false });
+                    response.redirect('/control/admin/Workshop/add');
+                    response.end();
+                }
+            });
+
+        } else {
+            response.cookie('snm', "Workshop not added! wrong params", { maxAge: 900000, httpOnly: false });
+            response.cookie('sns', "true", { maxAge: 900000, httpOnly: false });
+            response.cookie('snc', "alert-danger", { maxAge: 900000, httpOnly: false });
+            response.redirect('/control/admin/workshop/add');
+            response.end();
+        }
+
+
+    } else {
+        response.redirect('/control/admin/login');
+        response.end();
+    }
+};
+AdminPanelController.prototype.update_workshop    = function (request, response) {
+    if(request.session.admin){
+
+        Workshop.findOne({_id : request.params.id}).exec(function (err, _workshop) {
+            if(_workshop){
+
+                _workshop.date      = request.body.date;
+                _workshop.time      = request.body.time;
+                _workshop.conducts  = request.body.conducts;
+                _workshop.theme     = request.body.theme;
+                _workshop.color     = request.body.color;
+                _workshop.bgcolor   = request.body.bgcolor;
+                _workshop.priority  = request.body.priority;
+
+                if (_workshop.date) {
+
+                    _workshop.save(function(err) {
+                        if (err) {
+
+                            response.cookie('snm', "Workshop not updated!", { maxAge: 900000, httpOnly: false });
+                            response.cookie('sns', "true", { maxAge: 900000, httpOnly: false });
+                            response.cookie('snc', "alert-danger", { maxAge: 900000, httpOnly: false });
+                            response.redirect('/control/admin/workshop/edit/'+request.params.id);
+                            response.end();
+
+                        } else {
+                            response.cookie('snm', "Workshop successfully updated!", { maxAge: 900000, httpOnly: false });
+                            response.cookie('sns', "true", { maxAge: 900000, httpOnly: false });
+                            response.cookie('snc', "alert-success", { maxAge: 900000, httpOnly: false });
+                            response.redirect('/control/admin/workshop/edit/'+request.params.id);
+                            response.end();
+                        }
+                    });
+
+                } else {
+                    response.cookie('snm', "Workshop not updated! wrong params", { maxAge: 900000, httpOnly: false });
+                    response.cookie('sns', "true", { maxAge: 900000, httpOnly: false });
+                    response.cookie('snc', "alert-danger", { maxAge: 900000, httpOnly: false });
+                    response.redirect('/control/admin/workshop/edit/'+request.params.id);
+                    response.end();
+                }
+
+
+            } else{
+                console.log(err);
+                response.render( path.resolve('public/views/errors/404.jade'), {
+                    title           : "Brands & Business: PAGE NOT FOUND"
+                });
+                response.end();
+            }
+        });
+
+    } else {
+        response.redirect('/control/admin/login');
+        response.end();
+    }
+};
+AdminPanelController.prototype.delete_workshop    = function (request, response) {
+    if(request.session.admin){
+
+        Workshop.findOne({_id: request.body.id }).exec(function(err, _workshop) {
+            if (err) {
+                response.cookie('snm', "Can't delete workshop...", { maxAge: 900000, httpOnly: false });
+                response.cookie('sns', "true", { maxAge: 900000, httpOnly: false });
+                response.cookie('snc', "alert-danger", { maxAge: 900000, httpOnly: false });
+                response.redirect('/control/admin/workshop');
+                response.end();
+            } else {
+
+                _workshop.remove();
+
+                response.cookie('snm', "Workshop successfully deleted!", { maxAge: 900000, httpOnly: false });
+                response.cookie('sns', "true", { maxAge: 900000, httpOnly: false });
+                response.cookie('snc', "alert-success", { maxAge: 900000, httpOnly: false });
+                response.redirect('/control/admin/workshop');
                 response.end();
 
             }

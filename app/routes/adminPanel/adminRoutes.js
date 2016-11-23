@@ -54,6 +54,14 @@ module.exports = function(app, multipart) {
     app.post('/control/admin/agenda/edit/:id',      multipart.array(), function(req, res){ adminPanelController.update_agenda(req, res); });
     app.post('/control/admin/agenda/delete',        multipart.array(), function(req, res){ adminPanelController.delete_agenda(req, res); });
 
+    // workshop
+    app.get('/control/admin/workshop',                multipart.array(), function(req, res){ adminPanelController.get_workshop(req, res); });
+    app.get('/control/admin/workshop/add',            multipart.array(), function(req, res){ adminPanelController.add_workshop(req, res); });
+    app.post('/control/admin/workshop/add',           multipart.array(), function(req, res){ adminPanelController.create_workshop(req, res); });
+    app.get('/control/admin/workshop/edit/:id',       multipart.array(), function(req, res){ adminPanelController.edit_workshop(req, res); });
+    app.post('/control/admin/workshop/edit/:id',      multipart.array(), function(req, res){ adminPanelController.update_workshop(req, res); });
+    app.post('/control/admin/workshop/delete',        multipart.array(), function(req, res){ adminPanelController.delete_workshop(req, res); });
+
 
 
 };

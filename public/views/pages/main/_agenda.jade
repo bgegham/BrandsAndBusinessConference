@@ -56,6 +56,20 @@ div#agenda
                                                                     each sp in item.speakers
                                                                         if sp != ""
                                                                             span.cilabs-schedule-speaker-name= sp
+                                if _workshop24
+                                    h2 Workshop
+                                    each item in _workshop24
+                                        .row.workshop-control(style="position:relative;background:#" + item.color)
+                                            .col-xs-12.col-md-4(style="position:static!important;min-height: 50px;")
+                                                span.wdtime.text-nowrap= item.time
+                                            .col-xs-12.col-md-8(style="background:#fff;padding: 15px;left: 1px;")
+                                                h4.text-left.wkConducts= item.conducts
+                                                p.text-left.wkTheme.clearfix= item.theme
+                                        br
+                                        .clearfix
+
+
+
                             li(data-date='26/11/2016')
                                 h2 Yerevan, Armenia
                                 if _agenda26
@@ -82,4 +96,15 @@ div#agenda
                                                                     each sp in item.speakers
                                                                         if sp != ""
                                                                             span.cilabs-schedule-speaker-name= sp
+                                if _workshop26
+                                    h2 Workshop
+                                    each item in _workshop26
+                                        .row.workshop-control(style="position:relative;background:#" + item.color)
+                                            .col-xs-12.col-md-4(style="position:initial!important;min-height: 50px;")
+                                                span.wdtime.text-nowrap= item.time
+                                            .col-xs-12.col-md-8(style="background:#fff;padding: 15px;left: 1px;")
+                                                h4.text-left.wkConducts= item.conducts
+                                                p.text-left.wkTheme.clearfix= item.theme
+                                        br
+                                        .clearfix
 

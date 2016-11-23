@@ -534,3 +534,30 @@ Main Components
     text-align: center;
     font-size: 14px!important;
 }
+.workshop-control{
+
+}
+.wkConducts{
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+.wkTheme{
+    line-height: 1;
+    font-size: 14px!important;
+}
+.wdtime{
+    color:#fff;
+    position: absolute;
+    top: 24px;
+    left: 47px;
+    -webkit-transform: translate(0,-50%);
+    transform: translate(0,-50%);
+    text-align: left;
+    line-height: 28px;
+    font: 300 3rem 'Lato',sans-serif;
+}
+@media only screen and (min-width: 992px) {
+    .wdtime{
+        top: 50%!important;
+    }
+}

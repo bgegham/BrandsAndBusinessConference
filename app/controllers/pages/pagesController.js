@@ -7,6 +7,7 @@ var config                  = require('../../../config')[APP_ENV],
     moment                  = require('moment'),
     User                    = require('../../models/User'),
     Agenda                  = require('../../models/Agenda'),
+    Workshop                = require('../../models/Workshop'),
     Partner                 = require('../../models/Partner'),
     Speaker                 = require('../../models/Speaker'),
     About                   = require('../../models/About'),
@@ -81,7 +82,7 @@ PagesController.prototype.mainPage      =  function (request, response) {
 
 };
 
-PagesController.prototype.contactUs = function(request, response) {
+PagesController.prototype.contactUs     = function(request, response) {
 
     var firstName               = request.body.firstName;
     var lastName                = request.body.lastName;
@@ -303,6 +304,84 @@ PagesController.prototype.imageShow     =  function (request, response) {
     });
 };
 
+// for testing in live host
+// url: http://brandsandbusiness.am/test/page/30169093156554538658
+PagesController.prototype.testPage      =  function (request, response) {
 
+    Slider.find({})
+        .sort({"priority" : 1})
+        .exec(function (err, _slider) {
+            if(err){
+                console.log(err)
+            }
+        }).then(function (_slider) {
+        Partner.find({})
+            .sort({"priority" : 1})
+            .exec(function (err,_partner) {
+                if(err){
+                    console.log(err)
+                }
+            }).then(function (_partner) {
+            Speaker.find({})
+                .sort({"priority" : 1})
+                .exec(function (err,_speakers) {
+                    if(err){
+                        console.log(err)
+                    }
+                }).then(function (_speakers) {
+
+                Agenda.find({date:"24/11/2016"})
+                    .sort({"priority" : 1})
+                    .exec(function (err, _agenda24) {
+
+                        Agenda.find({date:"26/11/2016"})
+                            .sort({"priority" : 1})
+                            .exec(function (err, _agenda26) {
+
+
+
+                                Workshop.find({date:"24/11/2016"})
+                                    .sort({"priority" : 1})
+                                    .exec(function (err, _workshop24) {
+
+                                        Workshop.find({date:"26/11/2016"})
+                                            .sort({"priority" : 1})
+                                            .exec(function (err, _workshop26) {
+                                                About.find({}).exec(function (err, _about) {
+
+
+                                                    response.render( path.resolve('public/views/pages/main/index.jade'), {
+                                                        title           : "Brands & Business: brands business conference 2016",
+                                                        _sliderData     : _slider,
+                                                        _partnerData    : _partner,
+                                                        _speakersData   : _speakers,
+                                                        _about          : _about[0],
+                                                        _agenda24          : _agenda24,
+                                                        _agenda26          : _agenda26,
+                                                        _workshop24        : _workshop24,
+                                                        _workshop26        : _workshop26
+                                                    });
+                                                    response.end();
+
+
+
+                                                });
+                                            });
+
+                                    });
+
+
+                            });
+
+
+                    });
+
+
+
+            });
+        });
+    });
+
+};
 
 module.exports = new PagesController();
