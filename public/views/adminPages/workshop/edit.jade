@@ -40,6 +40,11 @@ block content
                                                 p.text-error= errors.errors.theme
                                     .col-xs-12.col-md-6
                                         .form-group
+                                            label Date small (Nov 24)
+                                            input.form-control(placeholder="Write date small",type="text",name="date_sm",required=true, value=(workshop && workshop.date_sm) ? workshop.date_sm : '')
+                                            if errors && errors.errors.date_sm
+                                                p.text-error= errors.errors.date_sm
+                                        .form-group
                                             label Border color (help:  #1288df   - blue)
                                             input.form-control(placeholder="Color code",type="text",name="color", value=(workshop && workshop.color) ? workshop.color : '')
                                             if errors && errors.errors.color

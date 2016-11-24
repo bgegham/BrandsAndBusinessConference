@@ -27,58 +27,72 @@ PagesController.prototype.mainPage      =  function (request, response) {
                 console.log(err)
             }
         }).then(function (_slider) {
-            Partner.find({})
-                   .sort({"priority" : 1})
-                   .exec(function (err,_partner) {
-                       if(err){
-                           console.log(err)
-                       }
-                   }).then(function (_partner) {
-                        Speaker.find({})
+        Partner.find({})
+            .sort({"priority" : 1})
+            .exec(function (err,_partner) {
+                if(err){
+                    console.log(err)
+                }
+            }).then(function (_partner) {
+            Speaker.find({})
+                .sort({"priority" : 1})
+                .exec(function (err,_speakers) {
+                    if(err){
+                        console.log(err)
+                    }
+                }).then(function (_speakers) {
+
+                Agenda.find({date:"24/11/2016"})
+                    .sort({"priority" : 1})
+                    .exec(function (err, _agenda24) {
+
+                        Agenda.find({date:"26/11/2016"})
                             .sort({"priority" : 1})
-                            .exec(function (err,_speakers) {
-                                if(err){
-                                    console.log(err)
-                                }
-                            }).then(function (_speakers) {
+                            .exec(function (err, _agenda26) {
 
-                            Agenda.find({date:"24/11/2016"})
-                                .sort({"priority" : 1})
-                                .exec(function (err, _agenda24) {
 
-                                Agenda.find({date:"26/11/2016"})
+
+                                Workshop.find({date:"24/11/2016"})
                                     .sort({"priority" : 1})
-                                    .exec(function (err, _agenda26) {
+                                    .exec(function (err, _workshop24) {
+
+                                        Workshop.find({date:"26/11/2016"})
+                                            .sort({"priority" : 1})
+                                            .exec(function (err, _workshop26) {
+                                                About.find({}).exec(function (err, _about) {
 
 
-                                    About.find({}).exec(function (err, _about) {
+                                                    response.render( path.resolve('public/views/pages/main/index.jade'), {
+                                                        title           : "Brands & Business: brands business conference 2016",
+                                                        _sliderData     : _slider,
+                                                        _partnerData    : _partner,
+                                                        _speakersData   : _speakers,
+                                                        _about          : _about[0],
+                                                        _agenda24          : _agenda24,
+                                                        _agenda26          : _agenda26,
+                                                        _workshop24        : _workshop24,
+                                                        _workshop26        : _workshop26
+                                                    });
+                                                    response.end();
 
 
-                                        response.render( path.resolve('public/views/pages/main/index.jade'), {
-                                            title           : "Brands & Business: brands business conference 2016",
-                                            _sliderData     : _slider,
-                                            _partnerData    : _partner,
-                                            _speakersData   : _speakers,
-                                            _about          : _about[0],
-                                            _agenda24          : _agenda24,
-                                            _agenda26          : _agenda26
-                                        });
-                                        response.end();
 
-
+                                                });
+                                            });
 
                                     });
-
-                                });
 
 
                             });
 
 
-
-                        });
                     });
+
+
+
+            });
         });
+    });
 
 };
 

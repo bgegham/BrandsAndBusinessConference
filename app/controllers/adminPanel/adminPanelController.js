@@ -1114,6 +1114,7 @@ AdminPanelController.prototype.create_workshop    = function (request, response)
 
     var _workshop           = new Workshop();
         _workshop.date      = request.body.date;
+        _workshop.date_sm   = request.body.date_sm;
         _workshop.time      = request.body.time;
         _workshop.conducts  = request.body.conducts;
         _workshop.theme     = request.body.theme;
@@ -1162,7 +1163,7 @@ AdminPanelController.prototype.update_workshop    = function (request, response)
         Workshop.findOne({_id : request.params.id}).exec(function (err, _workshop) {
             if(_workshop){
 
-                _workshop.date      = request.body.date;
+                _workshop.date_sm   = request.body.date_sm;
                 _workshop.time      = request.body.time;
                 _workshop.conducts  = request.body.conducts;
                 _workshop.theme     = request.body.theme;
@@ -1170,7 +1171,7 @@ AdminPanelController.prototype.update_workshop    = function (request, response)
                 _workshop.bgcolor   = request.body.bgcolor;
                 _workshop.priority  = request.body.priority;
 
-                if (_workshop.date) {
+                if (_workshop.conducts) {
 
                     _workshop.save(function(err) {
                         if (err) {

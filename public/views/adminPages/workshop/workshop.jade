@@ -46,22 +46,43 @@ block content
                                                             input(type="hidden",value=item._id,name="id")
                                                             button.btn.prt-delete.btn-xs.btn-danger(type="submit",onclick="return confirm('Are you sure?')",title="Delete")
                                                                 i.fa.fa-trash-o
-                                                        a.btn.prt-delete.btn-xs.btn-info(href="/control/admin/workshop/edit/"+item._id,title="Edit")
+                                                        a.btn.prt-delete.btn-xs.btn-info(href="/control/admin/workshop/edit/" + item._id,title="Edit")
                                                             i.fa.fa-edit
                                                     .col-xs-12.col-md-3
-                                                        .bordered-left(style="border-left-color:#"+item.color)
+                                                        .bordered-left(style="border-left-color:#" + item.color)
                                                         span.cilabs-schedule-day.text-nowrap= item.time
+                                                        span.cilabs-schedule-time= item.date_sm
                                                         span(style="color:red") Priority: #{item.priority}
                                                         span.mob.stage-btn.Night.Summit
                                                     .col-xs-12.col-md-9
-                                                        p.clearfix= item.conducts
-                                                        p ---
-                                                        p.clearfix= item.theme
+                                                        p.cilabs-schedule-title.clearfix= item.conducts
+                                                        p.cilabs-schedule-title(style="font-size:14px").clearfix= item.theme
                                                 br
                                                 .clearfix
 
                                 .tab-pane( id="tab_b" )
                                     br
                                     .col-xs-12(style="max-width: 800px")
+                                        if _workshop26
+                                            each item in _workshop26
+                                                .row.workshop-control(style="background:#" + item.bgcolor, class=(item.color == item.bgcolor) ? "break-agenda" : "" )
+                                                    .col-xs-12
+                                                        form(action="/control/admin/workshop/delete", method="post",style="display: inline;")
+                                                            input(type="hidden",value=item._id,name="id")
+                                                            button.btn.prt-delete.btn-xs.btn-danger(type="submit",onclick="return confirm('Are you sure?')",title="Delete")
+                                                                i.fa.fa-trash-o
+                                                        a.btn.prt-delete.btn-xs.btn-info(href="/control/admin/workshop/edit/" + item._id,title="Edit")
+                                                            i.fa.fa-edit
+                                                    .col-xs-12.col-md-3
+                                                        .bordered-left(style="border-left-color:#" + item.color)
+                                                        span.cilabs-schedule-day.text-nowrap= item.time
+                                                        span.cilabs-schedule-time= item.date_sm
+                                                        span(style="color:red") Priority: #{item.priority}
+                                                        span.mob.stage-btn.Night.Summit
+                                                    .col-xs-12.col-md-9
+                                                        p.cilabs-schedule-title.clearfix= item.conducts
+                                                        p.cilabs-schedule-title(style="font-size:14px").clearfix= item.theme
+                                                br
+                                                .clearfix
 
 

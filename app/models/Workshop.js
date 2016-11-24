@@ -12,6 +12,10 @@ var workshopSchema = new Schema({
         type: String,
         default : ""
     },
+    date_sm : {
+        type: String,
+        default : ""
+    },
     conducts : {
         type: String,
         default : ""

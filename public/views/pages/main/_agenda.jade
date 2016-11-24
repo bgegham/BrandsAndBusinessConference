@@ -57,16 +57,28 @@ div#agenda
                                                                         if sp != ""
                                                                             span.cilabs-schedule-speaker-name= sp
                                 if _workshop24
-                                    h2 Workshop
-                                    each item in _workshop24
-                                        .row.workshop-control(style="position:relative;background:#" + item.color)
-                                            .col-xs-12.col-md-4(style="position:static!important;min-height: 50px;")
-                                                span.wdtime.text-nowrap= item.time
-                                            .col-xs-12.col-md-8(style="background:#fff;padding: 15px;left: 1px;")
-                                                h4.text-left.wkConducts= item.conducts
-                                                p.text-left.wkTheme.clearfix= item.theme
+                                    if _workshop24.length != 0
+                                        h2 Workshops
                                         br
-                                        .clearfix
+                                        each item in _workshop24
+                                            .row.agenda-control(
+                                            style="background:#" + item.bgcolor,
+                                            class=(item.color == item.bgcolor) ? "break-agenda" : "",
+                                            data-toggle=(item.color == item.bgcolor) ? "collapse" : "",
+                                            data-target=(item.color != item.bgcolor) ? "#" + item._id : ""
+                                            )
+                                                .bordered-left(style="border-left-color:#" + item.color)
+                                                .col-xs-12.col-md-4.date-schedule
+                                                    span.cilabs-schedule-day.text-nowrap= item.time
+                                                    span.cilabs-schedule-time= item.date_sm
+                                                    span.mob.stage-btn.Night.Summit
+                                                .col-xs-12.col-md-8
+                                                    .cilabs-schedule-title.clearfix= item.conducts
+                                                    if item.color != item.bgcolor
+                                                        div.collapse(id=item._id)
+                                                            .cilabs-schedule-descr.col-xs-12= item.theme
+                                            br
+                                            .clearfix
 
 
 
@@ -97,14 +109,26 @@ div#agenda
                                                                         if sp != ""
                                                                             span.cilabs-schedule-speaker-name= sp
                                 if _workshop26
-                                    h2 Workshop
-                                    each item in _workshop26
-                                        .row.workshop-control(style="position:relative;background:#" + item.color)
-                                            .col-xs-12.col-md-4(style="position:initial!important;min-height: 50px;")
-                                                span.wdtime.text-nowrap= item.time
-                                            .col-xs-12.col-md-8(style="background:#fff;padding: 15px;left: 1px;")
-                                                h4.text-left.wkConducts= item.conducts
-                                                p.text-left.wkTheme.clearfix= item.theme
+                                    if _workshop26.length != 0
+                                        h2 Workshops
                                         br
-                                        .clearfix
+                                        each item in _workshop26
+                                            .row.agenda-control(
+                                            style="background:#" + item.bgcolor,
+                                            class=(item.color == item.bgcolor) ? "break-agenda" : "",
+                                            data-toggle=(item.color == item.bgcolor) ? "collapse" : "",
+                                            data-target=(item.color != item.bgcolor) ? "#" + item._id : ""
+                                            )
+                                                .bordered-left(style="border-left-color:#" + item.color)
+                                                .col-xs-12.col-md-4.date-schedule
+                                                    span.cilabs-schedule-day.text-nowrap= item.time
+                                                    span.cilabs-schedule-time= item.date_sm
+                                                    span.mob.stage-btn.Night.Summit
+                                                .col-xs-12.col-md-8
+                                                    .cilabs-schedule-title.clearfix= item.conducts
+                                                    if item.color != item.bgcolor
+                                                        div.collapse(id=item._id)
+                                                            .cilabs-schedule-descr.col-xs-12= item.theme
+                                            br
+                                            .clearfix
 
