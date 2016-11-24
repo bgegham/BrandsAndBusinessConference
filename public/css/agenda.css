@@ -527,8 +527,9 @@ Main Components
     border-radius: 15px;
     padding: 4px 15px 4px 0;
     float: left;
+    text-align: left;
+    width: 100%;
     font-weight: 400;
-    text-align: center;
     font-size: 14px!important;
 }
 .workshop-control{
