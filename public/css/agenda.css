@@ -515,7 +515,6 @@ Main Components
     font-weight: 300;
 }
 .agenda-control:hover .cilabs-schedule-speaker-name{
-    background: #464646;
     color: #fff;
 }
 .agenda-control:hover .cilabs-schedule-title{
@@ -525,10 +524,8 @@ Main Components
     color: #fff;
 }
 .cilabs-schedule-speaker-name{
-    background: #1288df;
-    color: #fff;
     border-radius: 15px;
-    padding: 4px 15px;
+    padding: 4px 15px 4px 0;
     float: left;
     font-weight: 400;
     text-align: center;
