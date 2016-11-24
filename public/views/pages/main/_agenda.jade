@@ -58,7 +58,7 @@ div#agenda
                                                                             span.cilabs-schedule-speaker-name= sp
                                 if _workshop24
                                     if _workshop24.length != 0
-                                        h2 Workshops
+                                        h1.txt-shadow Workshops
                                         br
                                         each item in _workshop24
                                             .row.agenda-control(
@@ -73,7 +73,7 @@ div#agenda
                                                     span.cilabs-schedule-time= item.date_sm
                                                     span.mob.stage-btn.Night.Summit
                                                 .col-xs-12.col-md-8
-                                                    .cilabs-schedule-title.clearfix= item.conducts
+                                                    .cilabs-schedule-title.wkConducts.clearfix= item.conducts
                                                     if item.color != item.bgcolor
                                                         div.collapse(id=item._id)
                                                             .cilabs-schedule-descr.col-xs-12= item.theme
@@ -110,8 +110,9 @@ div#agenda
                                                                             span.cilabs-schedule-speaker-name= sp
                                 if _workshop26
                                     if _workshop26.length != 0
-                                        h2 Workshops
-                                        br
+                                        div.clearfix
+                                            h1.txt-shadow Workshops
+                                            hr
                                         each item in _workshop26
                                             .row.agenda-control(
                                             style="background:#" + item.bgcolor,
@@ -125,7 +126,7 @@ div#agenda
                                                     span.cilabs-schedule-time= item.date_sm
                                                     span.mob.stage-btn.Night.Summit
                                                 .col-xs-12.col-md-8
-                                                    .cilabs-schedule-title.clearfix= item.conducts
+                                                    .cilabs-schedule-title.wkConducts.clearfix= item.conducts
                                                     if item.color != item.bgcolor
                                                         div.collapse(id=item._id)
                                                             .cilabs-schedule-descr.col-xs-12= item.theme
